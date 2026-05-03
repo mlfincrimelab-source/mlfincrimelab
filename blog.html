@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Insights & Articles — ML FinCrime Automation Lab</title>
+<meta name="description" content="Compliance insights, MAS regulatory updates, AML/CFT guides, and reinsurance compliance case studies from ML FinCrime Automation Lab."/>
+<meta name="keywords" content="MAS compliance, AML CFT, reinsurance compliance, Singapore compliance, FATF, sanctions, compliance articles"/>
+<meta property="og:title" content="Compliance Insights — ML FinCrime Automation Lab"/>
+<meta property="og:type" content="website"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0b1f35;--navy2:#0f2a4a;--navy3:#142f52;
+  --gold:#c9973a;--gold2:#f4a429;--gold-light:#f4c878;
+  --text:#1a2535;--text2:#3d4f63;--muted:#6b7f94;
+  --white:#fff;--off:#fafaf8;--cream:#f5f0e8;
+  --border:#e2ddd6;--green:#0a7c50;--red:#b91c1c;--amber:#f59e0b;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+p{line-height:1.75;color:var(--text2)}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,31,53,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,151,58,0.15)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1200px;margin:0 auto;padding:0 28px}
+.nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#fff;letter-spacing:.02em}
+.nav-tag{font-size:10px;color:var(--gold2);font-style:italic}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:12px;font-weight:500;color:rgba(255,255,255,0.65);letter-spacing:.06em;text-transform:uppercase;transition:color .2s;cursor:pointer;text-decoration:none}
+.nav-links a:hover,a.active{color:var(--gold2)}
+.nav-cta{padding:9px 20px!important;border-radius:4px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)!important;font-weight:700!important;font-size:11px!important;letter-spacing:.08em!important;transition:filter .2s!important}
+.nav-cta:hover{filter:brightness(1.1)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:#fff}
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:66px;left:0;right:0;background:rgba(11,31,53,0.99);flex-direction:column;padding:24px 28px;gap:20px;border-bottom:1px solid rgba(201,151,58,0.15)}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+}
+
+/* PAGE HERO */
+.page-hero{background:var(--navy2);padding:120px 28px 72px;text-align:center;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,151,58,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,151,58,0.04) 1px,transparent 1px);background-size:64px 64px;pointer-events:none}
+.page-hero::after{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:60%;height:100%;background:radial-gradient(ellipse,rgba(201,151,58,0.06),transparent 70%);pointer-events:none}
+.page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.page-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid rgba(201,151,58,0.3);border-radius:2px;margin-bottom:20px}
+.page-eyebrow span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
+.page-hero h1{font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:16px}
+.page-hero h1 em{font-style:italic;color:var(--gold-light)}
+.page-hero p{font-size:1.05rem;color:rgba(255,255,255,0.55);line-height:1.8;max-width:520px;margin:0 auto 28px}
+.beehiiv-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:3px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:13px;text-decoration:none;transition:all .2s}
+.beehiiv-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+
+/* CONTAINER */
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.sec-label{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.sec-label::before{content:'';width:18px;height:1px;background:var(--gold)}
+.divider{width:40px;height:2px;background:var(--gold);margin:14px 0 20px}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.fade-in.show{opacity:1;transform:translateY(0)}
+
+/* ARTICLE CARDS — INDEX */
+.articles-section{padding:72px 0}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+@media(max-width:900px){.articles-grid{grid-template-columns:1fr}}
+.article-card{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:all .25s;cursor:pointer;display:flex;flex-direction:column}
+.article-card:hover{box-shadow:0 14px 40px rgba(11,31,53,0.1);transform:translateY(-4px)}
+.ac-top{padding:28px 28px 0}
+.ac-meta{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.ac-cat{display:inline-block;padding:3px 10px;border-radius:2px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.ac-cat.mas{background:rgba(10,124,80,0.1);color:#0a7c50;border:1px solid rgba(10,124,80,0.2)}
+.ac-cat.reinsu{background:rgba(11,31,53,0.08);color:var(--navy);border:1px solid rgba(11,31,53,0.15)}
+.ac-cat.aml{background:rgba(201,151,58,0.1);color:var(--gold);border:1px solid rgba(201,151,58,0.2)}
+.ac-date{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace}
+.ac-read{font-size:11px;color:var(--muted)}
+.ac-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--text);line-height:1.25;margin-bottom:10px}
+.ac-excerpt{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.ac-bottom{padding:0 28px 24px;margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:16px}
+.ac-tags{display:flex;gap:6px;flex-wrap:wrap}
+.ac-tag{font-size:10px;font-family:'DM Mono',monospace;color:var(--muted);padding:2px 7px;background:var(--cream);border:1px solid var(--border);border-radius:2px}
+.ac-link{font-size:12px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:4px;white-space:nowrap;transition:color .2s}
+.ac-link:hover{color:var(--gold)}
+
+/* FULL ARTICLES */
+.article-full{padding:72px 0 80px}
+.article-full:nth-child(even){background:var(--white)}
+.af-inner{max-width:780px;margin:0 auto}
+.af-header{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.af-meta{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.af-cat{display:inline-block;padding:4px 12px;border-radius:2px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.af-cat.mas{background:rgba(10,124,80,0.1);color:#0a7c50;border:1px solid rgba(10,124,80,0.2)}
+.af-cat.reinsu{background:rgba(11,31,53,0.08);color:var(--navy);border:1px solid rgba(11,31,53,0.15)}
+.af-cat.aml{background:rgba(201,151,58,0.1);color:var(--gold);border:1px solid rgba(201,151,58,0.2)}
+.af-date{font-size:12px;color:var(--muted);font-family:'DM Mono',monospace}
+.af-read{font-size:12px;color:var(--muted)}
+.af-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--text);line-height:1.1;margin-bottom:14px}
+.af-subtitle{font-size:1.1rem;color:var(--muted);line-height:1.7;font-weight:300}
+.af-body{font-size:15px;color:var(--text2);line-height:1.85}
+.af-body h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text);margin:36px 0 12px;font-weight:600}
+.af-body h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--navy);margin:24px 0 8px;font-weight:600}
+.af-body p{margin-bottom:18px;color:var(--text2);font-size:15px;line-height:1.85}
+.af-body ul,.af-body ol{margin:0 0 18px 24px;display:grid;gap:8px}
+.af-body li{font-size:14px;color:var(--text2);line-height:1.7}
+.af-body strong{color:var(--text);font-weight:600}
+.af-body em{color:var(--navy);font-style:italic}
+
+/* Callout box inside article */
+.callout{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 5px 5px 0;padding:18px 22px;margin:24px 0}
+.callout p{margin-bottom:0;font-size:14px}
+.callout strong{color:var(--navy)}
+
+/* Key points box */
+.key-points{background:var(--navy2);border-radius:6px;padding:24px 28px;margin:28px 0}
+.key-points h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:14px;font-weight:600}
+.key-points ul{margin:0;list-style:none;display:grid;gap:9px}
+.key-points li{font-size:13px;color:rgba(255,255,255,0.7);display:flex;gap:9px;align-items:flex-start;line-height:1.6}
+.key-points li::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700}
+
+/* Regulation reference box */
+.reg-box{background:rgba(10,124,80,0.05);border:1px solid rgba(10,124,80,0.2);border-radius:5px;padding:18px 22px;margin:24px 0}
+.reg-box-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#0a7c50;margin-bottom:10px;font-weight:700}
+.reg-box p{margin-bottom:0;font-size:13px;color:var(--text2)}
+
+/* Table */
+.af-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:13px}
+.af-table th{background:var(--navy2);color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:12px;letter-spacing:.03em}
+.af-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.af-table tr:nth-child(even) td{background:var(--cream)}
+
+/* Product CTA inside article */
+.article-cta{background:linear-gradient(135deg,var(--navy2),var(--navy3));border:1px solid rgba(201,151,58,0.2);border-radius:8px;padding:28px 32px;margin:36px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.article-cta h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:5px;font-weight:600}
+.article-cta p{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:0}
+.cta-btn{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;border-radius:3px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:12px;text-decoration:none;transition:all .2s;white-space:nowrap;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+.cta-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* Article divider */
+.article-sep{border:none;border-top:2px solid var(--border);margin:0;max-width:1200px;margin:0 auto}
+
+/* Newsletter bar */
+.newsletter-bar{background:var(--navy);padding:56px 28px;text-align:center}
+.newsletter-bar h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2rem);color:#fff;margin-bottom:10px}
+.newsletter-bar p{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
+.nl-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:440px;margin:0 auto}
+.nl-input{flex:1;min-width:220px;padding:12px 16px;border-radius:3px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.nl-input::placeholder{color:rgba(255,255,255,0.3)}
+.nl-input:focus{border-color:rgba(201,151,58,0.5)}
+.nl-btn{padding:12px 22px;border-radius:3px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:13px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}
+.nl-btn:hover{filter:brightness(1.1)}
+.beehiiv-note{font-size:11px;color:rgba(255,255,255,0.25);margin-top:12px}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1)}
+.footer-bottom-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:22px 0}
+.footer-bottom-bar p{font-size:11px;color:rgba(255,255,255,0.25)}
+.footer-links-row{display:flex;gap:16px}
+.footer-links-row a{font-size:11px;color:rgba(255,255,255,0.25);transition:color .2s}
+.footer-links-row a:hover{color:rgba(255,255,255,0.55)}
+.footer-nav{display:flex;gap:20px;flex-wrap:wrap;padding:16px 0 0;border-top:1px solid rgba(255,255,255,0.05);margin-bottom:16px}
+.footer-nav a{font-size:12px;color:rgba(255,255,255,0.4);transition:color .2s}
+.footer-nav a:hover{color:rgba(255,255,255,0.75)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="34" height="34" viewBox="0 0 72 72" fill="none">
+        <circle cx="36" cy="36" r="34" fill="#0f2a4a" stroke="rgba(201,151,58,0.4)" stroke-width="1.5"/>
+        <text x="36" y="31" font-family="serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">ML</text>
+        <polyline points="14,52 26,40 34,46 44,34 58,28" stroke="#f4a429" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <polygon points="54,24 62,24 62,32" fill="#f4a429"/>
+      </svg>
+      <div>
+        <div class="nav-brand">ML FinCrime</div>
+        <div class="nav-tag">Automation Lab</div>
+      </div>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#tools">AML Tools</a>
+      <a href="index.html#reinsurance">Reinsurance</a>
+      <a href="index.html#jurisdictions">Coverage</a>
+      <a href="index.html#services">Services</a>
+      <a href="blog.html" class="active">Insights</a>
+      <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+    </div>
+    <div class="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow"><span>Compliance Insights · APAC Edition</span></div>
+    <h1>Regulatory <em>Insights</em><br>& Compliance Guides</h1>
+    <p>Practical compliance analysis, MAS regulatory updates, and reinsurance guidance — written for practitioners, not administrators.</p>
+    <a href="https://mlfincrimelab.beehiiv.com" class="beehiiv-btn" target="_blank" rel="noopener">
+      📬 Subscribe for Free Updates →
+    </a>
+  </div>
+</div>
+
+<!-- ARTICLE INDEX -->
+<section class="articles-section" style="background:var(--off)">
+  <div class="container">
+    <div class="sec-label">Latest Articles</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);max-width:480px">Three Articles.<br><em>Three Compliance Disciplines.</em></h2>
+    <div class="divider"></div>
+
+    <div class="articles-grid">
+
+      <div class="article-card fade-in" onclick="document.getElementById('article1').scrollIntoView({behavior:'smooth'})">
+        <div class="ac-top">
+          <div class="ac-meta">
+            <span class="ac-cat mas">MAS Regulatory</span>
+            <span class="ac-date">May 2025</span>
+            <span class="ac-read">· 8 min read</span>
+          </div>
+          <div class="ac-title">MAS AML/CFT July 2025 Updates: What Every Singapore Compliance Officer Must Know</div>
+          <div class="ac-excerpt">The Monetary Authority of Singapore revised its AML/CFT guidelines effective 1 July 2025 — introducing an explicit Proliferation Financing mandate and tightening STR timelines. Here's what changed and what you need to do now.</div>
+        </div>
+        <div class="ac-bottom">
+          <div class="ac-tags"><span class="ac-tag">MAS</span><span class="ac-tag">AML/CFT</span><span class="ac-tag">PF</span></div>
+          <span class="ac-link">Read Article →</span>
+        </div>
+      </div>
+
+      <div class="article-card fade-in" onclick="document.getElementById('article2').scrollIntoView({behavior:'smooth'})">
+        <div class="ac-top">
+          <div class="ac-meta">
+            <span class="ac-cat reinsu">Reinsurance</span>
+            <span class="ac-date">April 2025</span>
+            <span class="ac-read">· 10 min read</span>
+          </div>
+          <div class="ac-title">The Marine Reinsurance Sanctions Blind Spot: Five Things Your Compliance Programme Is Probably Missing</div>
+          <div class="ac-excerpt">Marine reinsurance carries the highest sanctions exposure of any line of business — yet most reinsurance compliance programmes treat it the same as property. Here are the five gaps that leave reinsurers exposed.</div>
+        </div>
+        <div class="ac-bottom">
+          <div class="ac-tags"><span class="ac-tag">Marine</span><span class="ac-tag">Sanctions</span><span class="ac-tag">OFAC</span></div>
+          <span class="ac-link">Read Article →</span>
+        </div>
+      </div>
+
+      <div class="article-card fade-in" onclick="document.getElementById('article3').scrollIntoView({behavior:'smooth'})">
+        <div class="ac-top">
+          <div class="ac-meta">
+            <span class="ac-cat aml">AML/CFT Guide</span>
+            <span class="ac-date">March 2025</span>
+            <span class="ac-read">· 7 min read</span>
+          </div>
+          <div class="ac-title">From Policy to Practice: Why Most AML/CFT Programmes Fail the Examination — and How to Fix Yours</div>
+          <div class="ac-excerpt">Regulatory examinations consistently find the same gap: well-written policies that are not operationalized. Here is the practical framework that turns policy documents into working compliance programmes.</div>
+        </div>
+        <div class="ac-bottom">
+          <div class="ac-tags"><span class="ac-tag">AML/CFT</span><span class="ac-tag">Framework</span><span class="ac-tag">FATF</span></div>
+          <span class="ac-link">Read Article →</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="article-sep"/>
+
+<!-- ══════════════════════════════════════════════
+     ARTICLE 1 — MAS July 2025 Updates
+══════════════════════════════════════════════ -->
+<article class="article-full" id="article1" style="background:var(--white)">
+  <div class="container">
+    <div class="af-inner">
+
+      <div class="af-header">
+        <div class="af-meta">
+          <span class="af-cat mas">MAS Regulatory Update</span>
+          <span class="af-date">May 2025</span>
+          <span class="af-read">· 8 min read</span>
+        </div>
+        <h2 class="af-title">MAS AML/CFT July 2025 Updates: What Every Singapore Compliance Officer Must Know</h2>
+        <p class="af-subtitle">The Monetary Authority of Singapore revised its AML/CFT guidelines effective 1 July 2025 — introducing an explicit Proliferation Financing mandate and tightening STR timelines for sanctioned-party cases. Here is what changed, what it means for your programme, and the actions you need to take before the deadline.</p>
+      </div>
+
+      <div class="af-body">
+
+        <p>Singapore's financial sector woke up to a significant regulatory shift on 1 July 2025. The MAS revised its suite of AML/CFT instruments — including the Guidelines on Prevention of Money Laundering and Countering the Financing of Terrorism for Direct General Insurance Business, Reinsurance Business, and Direct Life Insurance Business — introducing changes that every compliance officer in a MAS-licensed institution needs to understand and act on.</p>
+
+        <p>This article focuses specifically on what changed, why it matters for reinsurers and insurers in Singapore, and the concrete steps you should be taking now.</p>
+
+        <h3>What Changed on 1 July 2025</h3>
+
+        <p>The July 2025 revisions introduced three material changes across the MAS AML/CFT framework:</p>
+
+        <h4>1. Proliferation Financing (PF) Now Explicitly Mandated</h4>
+        <p>The most significant change is the formal incorporation of <strong>Proliferation Financing (PF) risk assessments</strong> into the AML/CFT framework. Previously, PF was addressed indirectly through sanctions compliance obligations. From 1 July 2025, institutions are explicitly required to:</p>
+        <ul>
+          <li>Conduct a formal PF risk assessment as part of their institutional risk assessment process</li>
+          <li>Identify PF-specific red flags — particularly relating to DPRK and Iran nexus transactions</li>
+          <li>Include PF in staff training programmes</li>
+          <li>Document PF controls separately from general sanctions controls</li>
+        </ul>
+
+        <div class="callout">
+          <p><strong>Why this matters for reinsurers:</strong> Reinsurance transactions often involve cross-border premium flows through jurisdictions that are subject to DPRK and Iran sanctions. Marine, aviation, and trade credit reinsurance are particularly exposed. A formal PF risk assessment forces reinsurers to explicitly map their exposure — which is a more demanding standard than the previous implicit approach.</p>
+        </div>
+
+        <h4>2. Tightened STR Timeline for Sanctioned-Party Cases</h4>
+        <p>MAS Notice 626 (revised) now imposes a <strong>1 business day</strong> Suspicious Transaction Report (STR) filing deadline where the transaction involves a party on a sanctions list. Previously, the standard STR filing timeline applied (within a practicable period, generally interpreted as a few business days).</p>
+
+        <p>This creates a significant operational requirement: your STR process must be able to identify sanctioned-party matches and generate a compliant STR filing within a single business day. For most compliance teams, this will require a review of the operational workflow between sanctions screening and STR filing.</p>
+
+        <h4>3. Clarification of MAS Notice 314 Scope</h4>
+        <p>The revisions also clarify that <strong>MAS Notice 314 applies only to direct life insurers writing life policies</strong>. Reinsurers are governed by the separate MAS AML/CFT Guidelines for Reinsurance Business. This distinction is important — compliance programmes built on Notice 314 requirements may need to be reviewed and updated to reference the correct instrument.</p>
+
+        <div class="reg-box">
+          <div class="reg-box-title">Regulatory Reference</div>
+          <p><strong>MAS Notice 314</strong> — Prevention of ML/TF for Direct Life Insurers (life policies only). Cancelled and re-issued 1 July 2025.<br/><br/>
+          <strong>MAS AML/CFT Guidelines (Reinsurance Business)</strong> — Separate instrument governing reinsurers. Updated 1 July 2025 to include PF mandate and 1 business day STR requirement for sanctioned-party cases.</p>
+        </div>
+
+        <h3>Your Action Checklist</h3>
+
+        <div class="key-points">
+          <h4>What You Need to Do Before Year-End 2025</h4>
+          <ul>
+            <li>Conduct a formal PF risk assessment — document your institution's exposure to DPRK and Iran-linked transactions by line of business</li>
+            <li>Update your AML/CFT policy to include a PF section — reference the correct MAS instrument (AML/CFT Guidelines for Reinsurance Business, not Notice 314)</li>
+            <li>Review your STR filing workflow — can you generate a compliant STR within 1 business day of a sanctioned-party match?</li>
+            <li>Update staff training to include PF red flags and the new 1-business-day STR requirement</li>
+            <li>Review your sanctions screening schedule — periodic re-screening is required, not just onboarding screening</li>
+          </ul>
+        </div>
+
+        <h3>The Broader Context: FATF and MAS Alignment</h3>
+
+        <p>The July 2025 changes reflect MAS's ongoing alignment with the Financial Action Task Force (FATF) framework, particularly FATF Recommendation 7 on targeted financial sanctions relating to proliferation financing. Following FATF's 2020 guidance on PF risk assessment and mitigation, most major financial regulators globally have been systematically incorporating explicit PF obligations into their AML/CFT frameworks.</p>
+
+        <p>Singapore's update is consistent with what the FCA implemented in the UK (via revised MLRs guidance), the EBA's December 2025 guidelines, and FinCEN's updated expectations. Compliance officers managing multi-jurisdictional programmes should treat the July 2025 MAS changes as consistent with the global direction of travel — not as a Singapore-specific outlier.</p>
+
+        <h3>What This Means for Your Compliance Tools</h3>
+
+        <p>Our <strong>CRR Pro v8</strong> and <strong>Sanctions Pro v1</strong> tools both include Proliferation Financing modules updated to reflect the 1 July 2025 MAS requirements. The CRR Pro tool's Singapore jurisdiction module specifically incorporates the revised Notice 626 risk factors, including the PF assessment requirement.</p>
+
+        <div class="article-cta">
+          <div>
+            <h4>CRR Pro v8 — Updated for July 2025 MAS Requirements</h4>
+            <p>Includes PF risk assessment, revised Singapore jurisdiction module, and 1-business-day STR workflow guidance.</p>
+          </div>
+          <a href="https://mlfincrimelab.gumroad.com/l/gqgxzl" class="cta-btn" target="_blank">Buy CRR Pro v8 — $179 →</a>
+        </div>
+
+        <p style="font-size:13px;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:14px;margin-top:4px">Disclaimer: This article is for educational purposes only and does not constitute legal or regulatory advice. Always refer to current official MAS publications and consult qualified legal counsel before implementing any compliance process.</p>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="article-sep"/>
+
+<!-- ══════════════════════════════════════════════
+     ARTICLE 2 — Marine Reinsurance Sanctions
+══════════════════════════════════════════════ -->
+<article class="article-full" id="article2" style="background:var(--off)">
+  <div class="container">
+    <div class="af-inner">
+
+      <div class="af-header">
+        <div class="af-meta">
+          <span class="af-cat reinsu">Reinsurance Compliance</span>
+          <span class="af-date">April 2025</span>
+          <span class="af-read">· 10 min read</span>
+        </div>
+        <h2 class="af-title">The Marine Reinsurance Sanctions Blind Spot: Five Things Your Compliance Programme Is Probably Missing</h2>
+        <p class="af-subtitle">Marine reinsurance carries the highest sanctions exposure of any line of business — yet most compliance programmes treat it the same as property. Here are the five gaps that consistently leave reinsurers exposed during regulatory examinations.</p>
+      </div>
+
+      <div class="af-body">
+
+        <p>In over a decade of compliance practice across reinsurance markets, one pattern repeats itself with striking consistency: marine reinsurance compliance is systematically under-resourced relative to the sanctions risk it carries. Compliance programmes that are robust for property catastrophe, casualty, and even life reinsurance often have significant gaps when it comes to the specific obligations that attach to marine and energy risks.</p>
+
+        <p>The reason is structural. Marine risks are complex, international, and involve a web of counterparties — vessel owners, operators, charterers, cargo interests, brokers — many of whom are several layers removed from the cedant relationship. Each of these layers represents a potential sanctions exposure point. Yet many compliance frameworks focus only on the direct cedant relationship, missing the downstream exposure entirely.</p>
+
+        <p>Here are the five gaps most commonly identified during regulatory examinations of reinsurance compliance programmes with marine book exposure.</p>
+
+        <h3>Gap 1 — No Vessel-Level Screening Protocol</h3>
+
+        <p>The most fundamental gap is the absence of a vessel-level screening process. Many reinsurers screen their cedants and brokers at onboarding — which is necessary but not sufficient for marine risks. A compliant cedant can submit a risk involving a vessel that is owned by a sanctioned entity, flagged in a high-risk jurisdiction, or has recently made port calls in sanctioned territories.</p>
+
+        <p>A proper vessel screening protocol covers:</p>
+        <ul>
+          <li><strong>IMO Number verification</strong> — the permanent vessel identifier, unchanged even if the vessel is renamed or re-flagged</li>
+          <li><strong>Beneficial ownership tracing</strong> — through the multi-layer corporate structures commonly used in the shipping industry</li>
+          <li><strong>AIS (Automatic Identification System) history</strong> — specifically, any dark vessel behavior in the previous 12 months</li>
+          <li><strong>Port call history</strong> — any calls at sanctioned ports (Bandar Abbas, Latakia, etc.) in the previous 12 months</li>
+          <li><strong>Flag state assessment</strong> — vessels using open registries known to be used by sanctioned actors</li>
+        </ul>
+
+        <div class="callout">
+          <p><strong>The OFAC 50% Rule applies to vessel ownership.</strong> Under OFAC rules, any entity that is 50% or more owned by a Specially Designated National is itself blocked — even if not explicitly named on the SDN list. In marine reinsurance, this requires tracing beneficial ownership through what are often complex multi-jurisdictional corporate structures. This cannot be satisfied by a simple name-match screen.</p>
+        </div>
+
+        <h3>Gap 2 — No Cargo Classification Review</h3>
+
+        <p>Not all cargo is equal from a sanctions compliance perspective. Cargo screening is a distinct obligation from vessel screening, and many marine compliance programmes conflate the two or omit cargo screening entirely.</p>
+
+        <table class="af-table">
+          <tr><th>Cargo Category</th><th>Compliance Consideration</th></tr>
+          <tr><td>Crude oil & petroleum products</td><td>Russian, Iranian, Venezuelan origin — price cap rules, origin verification essential</td></tr>
+          <tr><td>Dual-use goods</td><td>Technology, chemicals, electronics — may require export licence verification</td></tr>
+          <tr><td>Grain & agricultural commodities</td><td>Russian-origin goods subject to EU/UK/US restrictions</td></tr>
+          <tr><td>Liquefied Natural Gas (LNG)</td><td>Russian LNG subject to US, EU, UK energy financing restrictions</td></tr>
+          <tr><td>Scrap metal & raw materials</td><td>North Korea: UN comprehensive prohibition on bulk commodity exports from DPRK</td></tr>
+        </table>
+
+        <h3>Gap 3 — No Pre-Claims Re-Screening Process</h3>
+
+        <p>Vessel ownership changes. A vessel that was clean at inception may have been sold to a sanctioned entity by the time a claim arises. Yet most marine compliance programmes only screen at the point of placement — not at the point of claims payment.</p>
+
+        <p>Before authorising or recommending payment of any marine claim, the payee should be re-screened. This is not a theoretical risk: there have been well-documented cases in the London market where claims were submitted on vessels whose ownership had changed to SDN-linked entities following the inception of the policy.</p>
+
+        <h3>Gap 4 — Missing Sanctions Clause Verification</h3>
+
+        <p>The LMA Joint Sanctions Clause (LMA 3100) is the market standard for marine placements. Many compliance frameworks assume it is always present — without actually verifying its inclusion or reviewing its terms. The specific trigger conditions in the clause (what constitutes automatic termination, what requires active cancellation, how partial coverage situations are handled) are material compliance considerations that should be reviewed at the time of placement, not assumed.</p>
+
+        <h3>Gap 5 — No Aggregation Monitoring for High-Risk Geographies</h3>
+
+        <p>Marine catastrophe accumulation is well-managed by underwriting teams. Sanctions accumulation is frequently not. A reinsurance portfolio can build up significant exposure to vessels transiting the Red Sea, the Strait of Hormuz, or the Black Sea — all areas that carry elevated sanctions risk — without any compliance-level awareness of the aggregate exposure.</p>
+
+        <div class="key-points">
+          <h4>Five Immediate Actions for Marine Reinsurance Compliance</h4>
+          <ul>
+            <li>Implement a vessel screening checklist for all new marine and energy risks — covering IMO number, beneficial ownership, AIS history, port calls, and flag state</li>
+            <li>Add cargo type to your bordereaux data requirements — you cannot screen what you do not capture</li>
+            <li>Build a pre-claims re-screening step into your claims handling process for all marine risks above a defined threshold</li>
+            <li>Verify the presence and terms of LMA 3100 (or equivalent) in every new marine placement as a compliance sign-off item</li>
+            <li>Create a geographic concentration report for marine risks in sanctioned or high-risk zones — review quarterly</li>
+          </ul>
+        </div>
+
+        <div class="article-cta">
+          <div>
+            <h4>Reinsurance LOB Compliance Guide — Marine & Energy Deep Dive</h4>
+            <p>Our LOB eBook covers all five gaps above in full detail — including vessel screening frameworks, cargo tables, and the OFAC 50% Rule.</p>
+          </div>
+          <a href="https://mlfincrimelab.gumroad.com/l/szybon" class="cta-btn" target="_blank">Buy LOB eBook — $29 →</a>
+        </div>
+
+        <p style="font-size:13px;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:14px;margin-top:4px">Disclaimer: This article is for educational purposes only and does not constitute legal or regulatory advice. Always consult qualified legal counsel and refer to current official publications from OFAC and other relevant regulators before implementing any compliance process.</p>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr class="article-sep"/>
+
+<!-- ══════════════════════════════════════════════
+     ARTICLE 3 — AML/CFT Operationalization
+══════════════════════════════════════════════ -->
+<article class="article-full" id="article3" style="background:var(--white)">
+  <div class="container">
+    <div class="af-inner">
+
+      <div class="af-header">
+        <div class="af-meta">
+          <span class="af-cat aml">AML/CFT Guide</span>
+          <span class="af-date">March 2025</span>
+          <span class="af-read">· 7 min read</span>
+        </div>
+        <h2 class="af-title">From Policy to Practice: Why Most AML/CFT Programmes Fail the Examination — and How to Fix Yours</h2>
+        <p class="af-subtitle">Regulatory examinations consistently find the same gap: well-written policies that are not operationalized. This is the practical framework that turns compliance policy documents into working programmes — applicable to both AML/CFT and reinsurance compliance.</p>
+      </div>
+
+      <div class="af-body">
+
+        <p>After reviewing dozens of compliance programmes across financial institutions in Singapore, the UK, and Hong Kong, one observation stands out above all others: the gap between a well-written policy and a functioning compliance programme is wider than almost anyone admits.</p>
+
+        <p>Most compliance failures that result in regulatory enforcement action are not caused by the absence of a policy. They are caused by the failure to operationalize the policy — to translate abstract compliance requirements into specific controls, assign those controls to named owners, test whether the controls are working, and fix them when they are not.</p>
+
+        <p>This article sets out the framework we use — which we call the PACE Model — for turning any compliance policy into a working operational programme.</p>
+
+        <h3>Why Policies Alone Are Not Enough</h3>
+
+        <p>Consider a typical AML/CFT policy statement: <em>"The institution will conduct sanctions screening on all customers at onboarding and on an ongoing basis."</em></p>
+
+        <p>This statement is perfectly adequate as a policy. But it tells you almost nothing about how compliance actually happens. Who conducts the screening? What system or list do they use? What happens when there is a match? What does "ongoing basis" mean in practice — monthly, quarterly, on a trigger? What evidence is kept? Who reviews the evidence? What happens when the process breaks down?</p>
+
+        <p>Regulators do not examine your policy document. They examine the evidence that your controls are working. The gap between the policy statement and the evidence of operational compliance is exactly where most programmes are found wanting.</p>
+
+        <h3>The PACE Model</h3>
+
+        <p>The PACE Model is a four-step framework for operationalizing any compliance policy. It is designed to be repeatable — applicable to a new sanctions policy, an updated AML/CFT guideline, or a reinsurance compliance framework. The steps are:</p>
+
+        <h4>P — Parse the Policy</h4>
+        <p>Break the policy down into its individual mandatory requirements. Every sentence containing "must", "shall", "required", or "prohibited" represents a separate compliance obligation that needs its own control. A policy that reads as a coherent paragraph in a board-approved document often contains six or eight distinct operational requirements when parsed carefully.</p>
+
+        <h4>A — Assign Ownership and Design Controls</h4>
+        <p>For each parsed requirement, assign a named owner (a role, not a team) and design a specific control. A control is a defined action, process, or system that reduces the likelihood or impact of a compliance failure. The four control types that matter are: <strong>preventive</strong> (stop the problem before it happens), <strong>detective</strong> (identify problems after they occur), <strong>corrective</strong> (fix identified problems), and <strong>directive</strong> (guide behaviour proactively).</p>
+
+        <h4>C — Communicate and Train</h4>
+        <p>A control that is not understood by the people responsible for it will not work. For each key compliance process, produce a one-page "What Do I Do If..." guide covering three scenarios: everything is normal, something looks unusual, and something has clearly gone wrong. Measure comprehension, not just completion.</p>
+
+        <h4>E — Execute, Monitor and Improve</h4>
+        <p>Run the controls, test them regularly, and fix gaps when testing reveals them. A finding from your own testing is infinitely preferable to a finding from a regulator.</p>
+
+        <div class="key-points">
+          <h4>The Four Questions That Define a Working Control</h4>
+          <ul>
+            <li>Is there a documented control for this requirement — not just a policy statement?</li>
+            <li>Is there a named owner for this control — not a team, a specific role?</li>
+            <li>Is there evidence that the control has been applied — retrievable, dated, signed?</li>
+            <li>Has the control been tested in the last 12 months — with findings documented and remediated?</li>
+          </ul>
+        </div>
+
+        <h3>The Most Common Operationalization Failures</h3>
+
+        <table class="af-table">
+          <tr><th>Failure Mode</th><th>What It Looks Like</th><th>How to Fix It</th></tr>
+          <tr><td>Policy without control</td><td>"We have a sanctions policy" but no screening process</td><td>Parse the policy — identify each requirement — design a specific control for each</td></tr>
+          <tr><td>Control without owner</td><td>"Compliance team" owns the control</td><td>Assign a specific role — if everyone owns it, no one does</td></tr>
+          <tr><td>Control without evidence</td><td>Screening is done verbally or undocumented</td><td>Every control must produce a retrievable record — date, action, outcome, sign-off</td></tr>
+          <tr><td>Control without testing</td><td>No one has checked whether the control actually works</td><td>Implement a quarterly testing programme — sample-based for high-volume, 100% for high-risk</td></tr>
+          <tr><td>Finding without remediation</td><td>Testing reveals a gap but no action is taken</td><td>Every finding must have an owner, a remediation action, and a deadline — tracked to closure</td></tr>
+        </table>
+
+        <h3>Applying This to Your AML/CFT Programme</h3>
+
+        <p>If you are reviewing your AML/CFT programme ahead of a regulatory examination, the quickest diagnostic is to pick your three highest-risk controls — sanctions screening, STR filing, and KYC refresh, for example — and ask the four questions above for each one. If you cannot answer all four questions with documentary evidence, you have identified your examination risk before the regulator does.</p>
+
+        <p>The same framework applies directly to reinsurance compliance. The operationalization gap is just as common in treaty compliance, bordereaux monitoring, and LOB-specific controls as it is in AML/CFT.</p>
+
+        <div class="article-cta">
+          <div>
+            <h4>From Policy to Practice — The Complete Playbook</h4>
+            <p>Our eBook covers the full PACE Model across 9 chapters — with worked examples for MAS-regulated reinsurers in Singapore and APAC.</p>
+          </div>
+          <a href="https://mlfincrimelab.gumroad.com/l/ijisw" class="cta-btn" target="_blank">Buy eBook — $29 →</a>
+        </div>
+
+        <p style="font-size:13px;color:var(--muted);font-style:italic;border-top:1px solid var(--border);padding-top:14px;margin-top:4px">Disclaimer: This article is for educational purposes only and does not constitute legal or regulatory advice. Always consult qualified legal counsel and refer to current official FATF, MAS, and FCA publications before implementing any compliance process.</p>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-bar">
+  <h3>Get New Articles in Your Inbox</h3>
+  <p>MAS regulatory updates, reinsurance compliance guides, and AML/CFT insights — free, every month. No spam. Unsubscribe anytime.</p>
+  <div class="nl-form">
+    <input type="email" class="nl-input" placeholder="your@email.com"/>
+    <button class="nl-btn" onclick="handleNL(this)">Subscribe Free →</button>
+  </div>
+  <p class="beehiiv-note">Or subscribe directly at <a href="https://mlfincrimelab.beehiiv.com" style="color:rgba(255,255,255,0.4);text-decoration:underline" target="_blank">mlfincrimelab.beehiiv.com</a></p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#tools">AML Tools</a>
+      <a href="index.html#reinsurance">Reinsurance</a>
+      <a href="index.html#jurisdictions">Coverage</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="blog.html">Insights</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-bottom-bar">
+      <p>© 2025 ML FinCrime Automation Lab. All Rights Reserved. Educational purposes only.</p>
+      <div class="footer-links-row">
+        <a href="mailto:mlfincrimelab@gmail.com">Support</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open')}
+document.addEventListener('click',e=>{
+  const nav=document.getElementById('navLinks');
+  const btn=document.querySelector('.hamburger');
+  if(nav.classList.contains('open')&&!nav.contains(e.target)&&!btn.contains(e.target))nav.classList.remove('open');
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+function handleNL(btn){
+  const input=btn.previousElementSibling;
+  if(input.value&&input.value.includes('@')){
+    btn.textContent='Subscribed ✓';btn.style.background='#059669';
+    input.value='';
+    setTimeout(()=>{btn.textContent='Subscribe Free →';btn.style.background='';},3000);
+  }
+}
+</script>
+</body>
+</html>
