@@ -5,859 +5,697 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>ML FinCrime Automation Lab — AML/CFT &amp; Reinsurance Compliance Tools</title>
 <meta name="description" content="FATF-aligned AML/CFT compliance tools and reinsurance compliance resources. 7 jurisdictions. 2025 legislation."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{--navy:#0b1f35;--navy2:#0f2a4a;--navy3:#142f52;--gold:#c9973a;--gold2:#f4a429;--gold-light:#f4c878;--text:#1a2535;--text2:#3d4f63;--muted:#6b7f94;--white:#fff;--off:#fafaf8;--cream:#f5f0e8;--border:#e2ddd6;--green:#0a7c50}
+:root{--navy:#0b1f35;--navy2:#0f2a4a;--navy3:#142f52;--gold:#c9973a;--gold2:#f4a429;--goldl:#f4c878;--text:#1a2535;--text2:#3d4f63;--muted:#6b7f94;--white:#fff;--off:#fafaf8;--cream:#f5f0e8;--border:#e2ddd6;--green:#0a7c50}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--text);overflow-x:hidden}
 h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.1}
 p{line-height:1.75;color:var(--text2)}
 a{color:inherit;text-decoration:none}
+img{max-width:100%}
 
-/* NAV - clean, no conflicts */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(11,31,53,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,151,58,0.15)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1200px;margin:0 auto;padding:0 28px}
-.nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer}
-.nav-brand{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#fff}
-.nav-tag{font-size:10px;color:var(--gold2);font-style:italic}
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{font-size:12px;font-weight:500;color:rgba(255,255,255,0.65);letter-spacing:.06em;text-transform:uppercase;transition:color .2s;cursor:pointer}
-.nav-links a:hover{color:var(--gold2)}
-.nav-cta{padding:9px 20px;border-radius:4px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy) !important;font-weight:700 !important;font-size:11px !important}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
-.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(11,31,53,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,151,58,0.15)}
+.ni{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.logo-txt{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#fff}
+.logo-sub{font-size:10px;color:var(--gold2);font-style:italic}
+.nl{display:flex;align-items:center;gap:22px}
+.nl a{font-size:12px;font-weight:500;color:rgba(255,255,255,0.65);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:color .2s;text-decoration:none}
+.nl a:hover{color:var(--gold2)}
+.nl .cta{padding:9px 18px;border-radius:4px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:11px;letter-spacing:.08em}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:10000}
+.hbg span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all .25s}
+.hbg.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-/* HERO */
+/* ── HERO ── */
 .hero{min-height:100vh;background:var(--navy2);display:flex;align-items:center;padding-top:66px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,151,58,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,151,58,0.04) 1px,transparent 1px);background-size:64px 64px}
-.hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:80px 28px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;padding:6px 14px;border:1px solid rgba(201,151,58,0.3);border-radius:2px;margin-bottom:24px}
-.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero-eyebrow span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
-.hero h1{font-size:clamp(2.2rem,4.5vw,3.8rem);color:#fff;margin-bottom:22px;line-height:1.05}
-.hero h1 em{font-style:italic;color:var(--gold-light)}
-.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:500px;margin-bottom:36px;line-height:1.8}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:3px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:13px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-primary:hover{filter:brightness(1.1);transform:translateY(-2px)}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:3px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-outline:hover{border-color:rgba(201,151,58,0.5);color:var(--gold2)}
-.hero-trust{display:flex;flex-wrap:wrap;gap:20px}
-.trust-item{font-size:11px;color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
-.trust-item::before{content:'';width:12px;height:1px;background:var(--gold);opacity:.6}
-.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:18px;cursor:pointer;transition:all .25s}
-.hero-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(201,151,58,0.3);transform:translateY(-3px)}
-.hc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
-.hc-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#fff;margin-bottom:4px;font-weight:600}
-.hc-desc{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:8px}
-.hc-price{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--gold-light)}
-.hc-price small{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;color:rgba(255,255,255,0.3);margin-left:4px}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,151,58,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,151,58,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;width:100%}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(201,151,58,0.3);border-radius:3px;margin-bottom:22px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.badge span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2)}
+.hero h1{font-size:clamp(2rem,4.5vw,3.6rem);color:#fff;margin-bottom:20px;line-height:1.05}
+.hero h1 em{font-style:italic;color:var(--goldl)}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.6);max-width:480px;margin-bottom:32px;line-height:1.8}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.btn-g{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;border-radius:3px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-weight:700;font-size:13px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-g:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.btn-o{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;border-radius:3px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-o:hover{border-color:rgba(201,151,58,.5);color:var(--gold2)}
+.trust{display:flex;flex-wrap:wrap;gap:18px}
+.trust-i{font-size:11px;color:rgba(255,255,255,.3);font-family:'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.trust-i::before{content:'';width:12px;height:1px;background:var(--gold);opacity:.6}
+.hcards{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.hcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:17px;cursor:pointer;transition:all .25s}
+.hcard:hover{background:rgba(255,255,255,.08);border-color:rgba(201,151,58,.3);transform:translateY(-3px)}
+.hc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:5px}
+.hc-ttl{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#fff;margin-bottom:4px;font-weight:600}
+.hc-dsc{font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;margin-bottom:7px}
+.hc-prc{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--goldl)}
+.hc-prc small{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;color:rgba(255,255,255,.3);margin-left:4px}
 
-/* STATS */
-.stats-bar{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1);border-bottom:1px solid rgba(201,151,58,0.1);padding:30px 0}
-.stats-inner{display:grid;grid-template-columns:repeat(5,1fr);max-width:1200px;margin:0 auto;padding:0 28px}
-.stat-item{text-align:center;padding:12px;border-right:1px solid rgba(255,255,255,0.06)}
-.stat-item:last-child{border-right:none}
-.stat-n{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold2);line-height:1;margin-bottom:4px}
-.stat-l{font-size:10px;color:rgba(255,255,255,0.35);font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+/* ── STATS ── */
+.sbar{background:var(--navy);border-top:1px solid rgba(201,151,58,.1);border-bottom:1px solid rgba(201,151,58,.1);padding:28px 0}
+.sgrid{display:grid;grid-template-columns:repeat(5,1fr);max-width:1200px;margin:0 auto;padding:0 24px}
+.sitem{text-align:center;padding:10px;border-right:1px solid rgba(255,255,255,.06)}
+.sitem:last-child{border-right:none}
+.snum{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold2);line-height:1;margin-bottom:4px}
+.slbl{font-size:10px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
 
-/* SHARED */
-section{padding:88px 0}
-.container{max-width:1200px;margin:0 auto;padding:0 28px}
-.sec-label{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.sec-label::before{content:'';width:18px;height:1px;background:var(--gold)}
-.divider{width:40px;height:2px;background:var(--gold);margin:16px 0}
-.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
-.fade-in.show{opacity:1;transform:translateY(0)}
-.btn-buy{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;border-radius:3px;background:var(--navy2);color:#fff;font-weight:600;font-size:12px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-buy:hover{background:var(--navy);transform:translateY(-1px)}
-.btn-buy.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
-.btn-ghost{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:3px;background:transparent;border:1px solid var(--border);color:var(--text2);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+/* ── SHARED ── */
+section{padding:84px 0}
+.ctr{max-width:1200px;margin:0 auto;padding:0 24px}
+.slabel{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.slabel::before{content:'';width:18px;height:1px;background:var(--gold)}
+.divd{width:38px;height:2px;background:var(--gold);margin:14px 0}
+.fi{opacity:0;transform:translateY(18px);transition:opacity .55s,transform .55s}
+.fi.vis{opacity:1;transform:none}
 
-/* TOOLS */
-.tool-card{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:22px;transition:box-shadow .25s}
-.tool-card:hover{box-shadow:0 12px 40px rgba(11,31,53,0.1)}
-.tc-hdr{background:var(--navy2);padding:26px 32px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px}
-.tc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:7px}
-.tc-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:#fff;margin-bottom:6px}
-.tc-sub{font-size:12px;color:rgba(255,255,255,0.5);max-width:460px;line-height:1.65}
-.tc-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold-light);text-align:right;white-space:nowrap}
-.tc-pnote{font-size:10px;color:rgba(255,255,255,0.3);text-align:right;margin-top:3px}
-.tc-body{padding:32px}
-.tc-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px}
-.tc-feat{display:flex;gap:10px;align-items:flex-start}
-.tc-feat-ic{width:18px;height:18px;border-radius:50%;background:rgba(201,151,58,0.1);border:1px solid rgba(201,151,58,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:9px;color:var(--gold)}
-.tc-feat-tx{font-size:12px;color:var(--text2);line-height:1.55}
-.tc-feat-tx strong{color:var(--text);display:block;margin-bottom:1px}
-.tc-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
-.chip{padding:3px 10px;border-radius:2px;background:var(--cream);border:1px solid var(--border);font-family:'DM Mono',monospace;font-size:9px;color:var(--text2)}
-.tc-foot{display:flex;gap:12px;align-items:center;padding-top:18px;border-top:1px solid var(--border)}
-.bundles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-.bcard{border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:all .2s}
-.bcard:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(11,31,53,0.1)}
-.bcard.feat{border-color:var(--gold)}
-.bcard-hdr{background:var(--navy2);padding:22px}
-.bcard-badge{display:inline-block;padding:2px 8px;background:var(--gold2);border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
-.bcard-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#fff;margin-bottom:3px}
-.bcard-sub{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:10px}
-.bcard-price{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--gold-light)}
-.bcard-price small{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;color:rgba(255,255,255,0.3);margin-left:4px}
-.bcard-body{padding:20px;background:var(--white)}
-.bcard-list{list-style:none;display:grid;gap:7px;margin-bottom:16px}
-.bcard-list li{font-size:12px;color:var(--text2);display:flex;gap:7px}
-.bcard-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
-.btn-blk{display:block;text-align:center;padding:11px;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;width:100%;transition:all .2s}
-.btn-blk.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
-.btn-blk.nv{background:var(--navy2);color:#fff}
-.btn-blk.nv:hover{background:var(--navy)}
-.guide-box{background:var(--navy2);border-radius:6px;padding:36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:44px;border:1px solid rgba(201,151,58,0.2)}
-.guide-box h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:7px}
-.guide-box p{font-size:13px;color:rgba(255,255,255,0.5);max-width:460px}
+/* ── BUTTONS ── */
+.bbuy{display:inline-flex;align-items:center;gap:6px;padding:11px 21px;border-radius:3px;background:var(--navy2);color:#fff;font-weight:600;font-size:12px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.bbuy:hover{background:var(--navy);transform:translateY(-1px)}
+.bbuy.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
+.bbuy.gold:hover{filter:brightness(1.08)}
+.bghost{display:inline-flex;align-items:center;gap:6px;padding:11px 17px;border-radius:3px;background:transparent;border:1px solid var(--border);color:var(--text2);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.bghost:hover{border-color:var(--gold);color:var(--gold)}
 
-/* JURISDICTIONS */
-.jur-strip{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgba(201,151,58,0.15);border-radius:5px;overflow:hidden;margin:36px 0}
-.jur-item{padding:16px 10px;text-align:center;border-right:1px solid rgba(201,151,58,0.1);background:rgba(255,255,255,0.02);transition:background .2s}
-.jur-item:last-child{border-right:none}
-.jur-item:hover{background:rgba(201,151,58,0.06)}
-.jur-flag{font-size:20px;margin-bottom:5px}
-.jur-name{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
-.jur-leg{font-size:10px;color:rgba(255,255,255,0.25);margin-top:2px}
-.jur-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.jur-card{padding:20px;border-radius:5px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);transition:border-color .2s}
-.jur-card:hover{border-color:rgba(201,151,58,0.25)}
-.jur-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);margin-bottom:8px;display:block}
-.jur-card h4{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;margin-bottom:5px}
-.jur-card p{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65}
+/* ── TOOL CARDS ── */
+.tcard{background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:20px;transition:box-shadow .25s}
+.tcard:hover{box-shadow:0 10px 36px rgba(11,31,53,.1)}
+.th{background:var(--navy2);padding:24px 30px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+.ttag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
+.ttl{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:5px}
+.tsub{font-size:12px;color:rgba(255,255,255,.5);max-width:440px;line-height:1.6}
+.tprc{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--goldl);text-align:right;white-space:nowrap}
+.tpn{font-size:10px;color:rgba(255,255,255,.3);text-align:right;margin-top:2px}
+.tb{padding:28px 30px}
+.tfeats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.tfeat{display:flex;gap:9px;align-items:flex-start}
+.tfic{width:17px;height:17px;border-radius:50%;background:rgba(201,151,58,.1);border:1px solid rgba(201,151,58,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:9px;color:var(--gold)}
+.tftx{font-size:12px;color:var(--text2);line-height:1.5}
+.tftx strong{color:var(--text);display:block;margin-bottom:1px}
+.tchips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.chip{padding:3px 9px;border-radius:2px;background:var(--cream);border:1px solid var(--border);font-family:'DM Mono',monospace;font-size:9px;color:var(--text2)}
+.tfoot{display:flex;gap:11px;align-items:center;padding-top:16px;border-top:1px solid var(--border)}
 
-/* REINSURANCE */
-.ri-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px}
-.ri-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:7px;overflow:hidden;transition:all .3s}
-.ri-card:hover{border-color:rgba(201,151,58,0.3);transform:translateY(-4px)}
-.ri-card.feat{border-color:rgba(201,151,58,0.35)}
-.ri-top{padding:20px 22px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.ri-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
-.ri-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;font-weight:600;line-height:1.2}
-.ri-pb{text-align:right;flex-shrink:0}
-.ri-was{font-size:10px;color:rgba(255,255,255,0.3);text-decoration:line-through;font-family:'DM Mono',monospace}
-.ri-price{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:var(--gold-light);line-height:1}
-.ri-pn{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px}
-.ri-body{padding:18px 22px}
-.ri-feats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
-.ri-feat{display:flex;gap:8px;align-items:flex-start}
-.ri-ic{width:15px;height:15px;border-radius:50%;background:rgba(201,151,58,0.12);border:1px solid rgba(201,151,58,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:8px;color:var(--gold)}
-.ri-tx{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.5}
-.ri-tx strong{color:rgba(255,255,255,0.8);display:block;font-size:11px}
-.ri-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
-.ri-tg{padding:3px 8px;border-radius:2px;font-family:'DM Mono',monospace;font-size:9px;font-weight:600}
-.ri-tg.vh{background:rgba(185,28,28,0.15);color:#f87171;border:1px solid rgba(185,28,28,0.25)}
-.ri-tg.hi{background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.25)}
-.ri-tg.lo{background:rgba(201,151,58,0.1);color:var(--gold);border:1px solid rgba(201,151,58,0.25)}
-.ri-foot{display:flex;gap:9px;align-items:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06)}
-.ri-bundle{background:rgba(201,151,58,0.05);border:1px solid rgba(201,151,58,0.2);border-radius:7px;padding:32px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;margin-top:24px}
-.ri-bundle h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:#fff;margin-bottom:7px}
-.ri-bundle p{font-size:12px;color:rgba(255,255,255,0.45);max-width:420px;line-height:1.7}
-.ri-bprice{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--gold-light);line-height:1}
-.ri-bwas{font-size:11px;color:rgba(255,255,255,0.3);text-decoration:line-through;font-family:'DM Mono',monospace;margin-bottom:4px}
-.ri-bsave{display:inline-block;background:rgba(10,124,80,0.15);border:1px solid rgba(10,124,80,0.3);color:#6ee7b7;font-size:10px;font-weight:700;padding:3px 10px;border-radius:2px;font-family:'DM Mono',monospace;margin-bottom:10px}
-.ri-bright{display:flex;flex-direction:column;align-items:flex-end}
-.lob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
-.lob-card{padding:20px;border-radius:5px;border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);transition:all .2s}
-.lob-card:hover{border-color:rgba(201,151,58,0.25);transform:translateY(-2px)}
-.lob-ic{font-size:22px;margin-bottom:8px;display:block}
-.lob-nm{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;margin-bottom:5px;font-weight:600}
-.lob-rsk{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:2px;margin-bottom:7px;font-family:'DM Mono',monospace}
-.lob-rsk.vh{background:rgba(185,28,28,0.15);color:#f87171;border:1px solid rgba(185,28,28,0.3)}
-.lob-rsk.hi{background:rgba(245,158,11,0.12);color:#fbbf24;border:1px solid rgba(245,158,11,0.25)}
-.lob-rsk.mh{background:rgba(109,40,217,0.12);color:#c084fc;border:1px solid rgba(109,40,217,0.25)}
-.lob-rsk.md{background:rgba(10,124,80,0.12);color:#34d399;border:1px solid rgba(10,124,80,0.25)}
-.lob-desc{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65}
-.books-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
-.book{padding:20px;background:var(--white);border:1px solid var(--border);border-radius:5px;display:flex;flex-direction:column;transition:all .2s}
-.book:hover{border-color:rgba(201,151,58,0.3);box-shadow:0 6px 20px rgba(11,31,53,0.07);transform:translateY(-2px)}
-.book-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:7px}
-.book-ttl{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:3px}
-.book-auth{font-size:10px;color:var(--muted);margin-bottom:7px;font-family:'DM Mono',monospace}
-.book-desc{font-size:11px;color:var(--muted);line-height:1.65;flex:1;margin-bottom:12px}
-.book-ft{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border);flex-wrap:wrap;gap:6px}
-.book-pr{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--text)}
-.amz-btn{display:inline-flex;align-items:center;gap:4px;background:#FF9900;color:#000;font-size:10px;font-weight:700;padding:5px 11px;border-radius:3px;text-decoration:none;transition:filter .2s}
-.amz-btn:hover{filter:brightness(1.1)}
-.aff-note{font-size:10px;color:var(--muted);font-style:italic;text-align:center;margin-top:12px;padding:9px;background:var(--cream);border-radius:4px;border:1px solid var(--border)}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-.svc{padding:28px;background:var(--white);border:1px solid var(--border);border-radius:5px;transition:all .2s}
-.svc:hover{border-color:rgba(11,31,53,0.2);box-shadow:0 8px 24px rgba(11,31,53,0.07)}
-.svc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
-.svc h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--text);margin-bottom:7px}
-.svc p{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:12px}
-.svc-pr{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--navy)}
-.svc-pr small{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;color:var(--muted)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.about-card{background:var(--navy2);border-radius:7px;padding:32px;position:relative;overflow:hidden}
-.about-card::after{content:'';position:absolute;bottom:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(201,151,58,0.1),transparent 70%);border-radius:50%}
-.about-av{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:16px}
-.about-nm{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:3px;font-weight:600}
-.about-role{font-size:10px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
-.about-bio{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.75;margin-bottom:16px}
-.cred{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:rgba(255,255,255,0.35);padding:6px 0;border-top:1px solid rgba(255,255,255,0.06)}
-.cred::before{content:'◆';color:var(--gold);font-size:7px;flex-shrink:0;margin-top:3px}
-.values{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:20px}
-.value{padding:13px;border-radius:4px;background:var(--cream);border:1px solid var(--border)}
-.val-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.val-txt{font-size:11px;color:var(--text2);line-height:1.55}
-.cta-strip{background:var(--navy3);padding:52px 0}
-.cta-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-.cta-inner h3{font-family:'Cormorant Garamond',serif;font-size:1.65rem;color:#fff;margin-bottom:5px}
-.cta-inner p{font-size:13px;color:rgba(255,255,255,0.45)}
-.cta-btns{display:flex;gap:12px;flex-wrap:wrap}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
-.contact-lft h2{color:#fff;margin-bottom:12px}
-.contact-lft p{color:rgba(255,255,255,0.5);font-size:13px;line-height:1.8;margin-bottom:24px}
-.channels{display:grid;gap:10px}
-.ch{display:flex;gap:11px;align-items:flex-start}
-.ch-ic{width:32px;height:32px;border-radius:4px;background:rgba(201,151,58,0.1);border:1px solid rgba(201,151,58,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px}
-.ch-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1px}
-.ch-val{font-size:12px;color:rgba(255,255,255,0.6)}
-.cf{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:7px;padding:28px}
-.cf-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#fff;margin-bottom:18px;font-weight:600}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.ff{margin-bottom:12px}
-.ff label{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,0.3);margin-bottom:5px;font-family:'DM Mono',monospace}
-.ff input,.ff select,.ff textarea{width:100%;padding:10px 13px;background:rgba(3,6,14,0.4);border:1px solid rgba(255,255,255,0.1);border-radius:3px;color:#fff;font-size:12px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
-.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:rgba(201,151,58,0.5)}
+/* ── AML BUNDLES ── */
+.bgrids{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.bc{border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:all .2s}
+.bc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(11,31,53,.1)}
+.bc.feat{border-color:var(--gold)}
+.bch{background:var(--navy2);padding:20px}
+.bcbadge{display:inline-block;padding:2px 8px;background:var(--gold2);border-radius:2px;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:6px}
+.bcn{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;margin-bottom:2px}
+.bcs{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:8px}
+.bcp{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--goldl)}
+.bcp small{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:400;color:rgba(255,255,255,.3);margin-left:3px}
+.bcb{padding:18px;background:var(--white)}
+.bclist{list-style:none;display:grid;gap:6px;margin-bottom:14px}
+.bclist li{font-size:12px;color:var(--text2);display:flex;gap:6px}
+.bclist li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.bblk{display:block;text-align:center;padding:10px;border-radius:3px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;width:100%;transition:all .2s}
+.bblk.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)}
+.bblk.nv{background:var(--navy2);color:#fff}
+.bblk.nv:hover{background:var(--navy)}
+
+/* ── GUIDE BOX ── */
+.gbox{background:var(--navy2);border-radius:6px;padding:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;margin-top:40px;border:1px solid rgba(201,151,58,.2)}
+.gbox h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#fff;margin-bottom:6px}
+.gbox p{font-size:13px;color:rgba(255,255,255,.5);max-width:440px}
+
+/* ── JURISDICTIONS ── */
+.jstrip{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgba(201,151,58,.15);border-radius:5px;overflow:hidden;margin:32px 0}
+.ji{padding:14px 8px;text-align:center;border-right:1px solid rgba(201,151,58,.1);background:rgba(255,255,255,.02);transition:background .2s}
+.ji:last-child{border-right:none}
+.ji:hover{background:rgba(201,151,58,.06)}
+.jflag{font-size:20px;margin-bottom:4px}
+.jname{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.jleg{font-size:10px;color:rgba(255,255,255,.25);margin-top:2px}
+.jcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.jcard{padding:18px;border-radius:5px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);transition:border-color .2s}
+.jcard:hover{border-color:rgba(201,151,58,.25)}
+.jnum{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);margin-bottom:7px;display:block}
+.jcard h4{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#fff;margin-bottom:5px}
+.jcard p{font-size:11px;color:rgba(255,255,255,.4);line-height:1.65}
+
+/* ── REINSURANCE ── */
+.rigrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:40px}
+.ricard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:7px;overflow:hidden;transition:all .3s}
+.ricard:hover{border-color:rgba(201,151,58,.3);transform:translateY(-4px)}
+.ricard.feat{border-color:rgba(201,151,58,.35)}
+.ritop{padding:18px 20px 14px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ritype{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:5px}
+.rinm{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#fff;font-weight:600;line-height:1.2}
+.ripb{text-align:right;flex-shrink:0}
+.riwas{font-size:10px;color:rgba(255,255,255,.3);text-decoration:line-through;font-family:'DM Mono',monospace}
+.riprc{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--goldl);line-height:1}
+.ripn{font-size:10px;color:rgba(255,255,255,.3);margin-top:2px}
+.ribody{padding:16px 20px}
+.rifeats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.rifeat{display:flex;gap:7px;align-items:flex-start}
+.riic{width:14px;height:14px;border-radius:50%;background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:8px;color:var(--gold)}
+.ritx{font-size:11px;color:rgba(255,255,255,.5);line-height:1.45}
+.ritx strong{color:rgba(255,255,255,.8);display:block;font-size:11px}
+.ritags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.ritag{padding:2px 7px;border-radius:2px;font-family:'DM Mono',monospace;font-size:9px;font-weight:600}
+.ritag.vh{background:rgba(185,28,28,.15);color:#f87171;border:1px solid rgba(185,28,28,.25)}
+.ritag.hi{background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.25)}
+.ritag.lo{background:rgba(201,151,58,.1);color:var(--gold);border:1px solid rgba(201,151,58,.25)}
+.rifoot{display:flex;gap:8px;align-items:center;padding-top:11px;border-top:1px solid rgba(255,255,255,.06)}
+.ribundle{background:rgba(201,151,58,.05);border:1px solid rgba(201,151,58,.2);border-radius:7px;padding:28px 36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-top:20px}
+.ribundle h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:6px}
+.ribundle p{font-size:12px;color:rgba(255,255,255,.45);max-width:400px;line-height:1.7}
+.ribprc{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--goldl);line-height:1}
+.ribwas{font-size:11px;color:rgba(255,255,255,.3);text-decoration:line-through;font-family:'DM Mono',monospace;margin-bottom:3px}
+.ribsave{display:inline-block;background:rgba(10,124,80,.15);border:1px solid rgba(10,124,80,.3);color:#6ee7b7;font-size:10px;font-weight:700;padding:3px 9px;border-radius:2px;font-family:'DM Mono',monospace;margin-bottom:8px}
+.ribright{display:flex;flex-direction:column;align-items:flex-end}
+
+/* ── LOB ── */
+.lob{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.lbc{padding:18px;border-radius:5px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);transition:all .2s}
+.lbc:hover{border-color:rgba(201,151,58,.25);transform:translateY(-2px)}
+.lbic{font-size:20px;margin-bottom:7px;display:block}
+.lbnm{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#fff;margin-bottom:4px;font-weight:600}
+.lbrsk{display:inline-block;font-size:9px;font-weight:700;padding:2px 6px;border-radius:2px;margin-bottom:6px;font-family:'DM Mono',monospace}
+.lbrsk.vh{background:rgba(185,28,28,.15);color:#f87171;border:1px solid rgba(185,28,28,.3)}
+.lbrsk.hi{background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.25)}
+.lbrsk.mh{background:rgba(109,40,217,.12);color:#c084fc;border:1px solid rgba(109,40,217,.25)}
+.lbrsk.md{background:rgba(10,124,80,.12);color:#34d399;border:1px solid rgba(10,124,80,.25)}
+.lbdesc{font-size:11px;color:rgba(255,255,255,.4);line-height:1.6}
+
+/* ── BOOKS ── */
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.bk{padding:18px;background:var(--white);border:1px solid var(--border);border-radius:5px;display:flex;flex-direction:column;transition:all .2s}
+.bk:hover{border-color:rgba(201,151,58,.3);box-shadow:0 5px 18px rgba(11,31,53,.07);transform:translateY(-2px)}
+.bkcat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
+.bkttl{font-family:'Cormorant Garamond',serif;font-size:.92rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:3px}
+.bkauth{font-size:10px;color:var(--muted);margin-bottom:6px;font-family:'DM Mono',monospace}
+.bkdesc{font-size:11px;color:var(--muted);line-height:1.6;flex:1;margin-bottom:10px}
+.bkft{display:flex;align-items:center;justify-content:space-between;padding-top:9px;border-top:1px solid var(--border);flex-wrap:wrap;gap:5px}
+.bkpr{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;color:var(--text)}
+.abtn{display:inline-flex;align-items:center;gap:4px;background:#FF9900;color:#000;font-size:10px;font-weight:700;padding:5px 10px;border-radius:3px;text-decoration:none;transition:filter .2s}
+.abtn:hover{filter:brightness(1.1)}
+.affnote{font-size:10px;color:var(--muted);font-style:italic;text-align:center;margin-top:10px;padding:8px;background:var(--cream);border-radius:4px;border:1px solid var(--border)}
+
+/* ── SERVICES ── */
+.svcg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.svc{padding:26px;background:var(--white);border:1px solid var(--border);border-radius:5px;transition:all .2s}
+.svc:hover{border-color:rgba(11,31,53,.2);box-shadow:0 7px 22px rgba(11,31,53,.07)}
+.svctag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:9px}
+.svc h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);margin-bottom:6px}
+.svc p{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.svcpr{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--navy)}
+.svcpr small{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;color:var(--muted)}
+
+/* ── ABOUT ── */
+.aboutg{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.aboutc{background:var(--navy2);border-radius:7px;padding:30px;position:relative;overflow:hidden}
+.aboutc::after{content:'';position:absolute;bottom:-28px;right:-28px;width:110px;height:110px;background:radial-gradient(circle,rgba(201,151,58,.1),transparent 70%);border-radius:50%}
+.av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:14px}
+.anm{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#fff;margin-bottom:2px;font-weight:600}
+.arole{font-size:10px;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.abio{font-size:12px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:14px}
+.acred{display:flex;gap:7px;align-items:flex-start;font-size:11px;color:rgba(255,255,255,.35);padding:5px 0;border-top:1px solid rgba(255,255,255,.06)}
+.acred::before{content:'◆';color:var(--gold);font-size:7px;flex-shrink:0;margin-top:3px}
+.vals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.val{padding:12px;border-radius:4px;background:var(--cream);border:1px solid var(--border)}
+.vlbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.vtxt{font-size:11px;color:var(--text2);line-height:1.5}
+
+/* ── CTA STRIP ── */
+.cstrip{background:var(--navy3);padding:48px 0}
+.cinn{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.cinn h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#fff;margin-bottom:5px}
+.cinn p{font-size:13px;color:rgba(255,255,255,.45)}
+.cbtns{display:flex;gap:11px;flex-wrap:wrap}
+
+/* ── CONTACT ── */
+.contg{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contl h2{color:#fff;margin-bottom:10px}
+.contl p{color:rgba(255,255,255,.5);font-size:13px;line-height:1.8;margin-bottom:22px}
+.chans{display:grid;gap:9px}
+.chan{display:flex;gap:10px;align-items:flex-start}
+.chic{width:30px;height:30px;border-radius:4px;background:rgba(201,151,58,.1);border:1px solid rgba(201,151,58,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px}
+.chlbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1px}
+.chval{font-size:12px;color:rgba(255,255,255,.6)}
+.cf{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:7px;padding:26px}
+.cftl{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:16px;font-weight:600}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ff{margin-bottom:11px}
+.ff label{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.3);margin-bottom:5px;font-family:'DM Mono',monospace}
+.ff input,.ff select,.ff textarea{width:100%;padding:10px 13px;background:rgba(3,6,14,.4);border:1px solid rgba(255,255,255,.1);border-radius:3px;color:#fff;font-size:12px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:rgba(201,151,58,.5)}
 .ff select option{background:#0b1f35}
-.ff textarea{min-height:88px;resize:vertical;line-height:1.6}
-.btn-submit{width:100%;padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:3px;color:var(--navy);font-weight:700;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-submit:hover{filter:brightness(1.1);transform:translateY(-1px)}
-footer{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1)}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding:52px 0 40px}
-.footer-brand p{font-size:12px;color:rgba(255,255,255,0.3);line-height:1.7;margin-top:10px;max-width:220px}
-.footer-col h5{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.footer-col ul{list-style:none;display:grid;gap:8px}
-.footer-col li a,.footer-col li span{font-size:12px;color:rgba(255,255,255,0.35);cursor:pointer;transition:color .2s;display:block}
-.footer-col li a:hover,.footer-col li span:hover{color:rgba(255,255,255,0.7)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding:18px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.footer-bottom p{font-size:11px;color:rgba(255,255,255,0.2)}
-.footer-links-row{display:flex;gap:14px}
-.footer-links-row a{font-size:11px;color:rgba(255,255,255,0.2);transition:color .2s}
-.footer-links-row a:hover{color:rgba(255,255,255,0.5)}
+.ff textarea{min-height:84px;resize:vertical;line-height:1.6}
+.bsub{width:100%;padding:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));border:none;border-radius:3px;color:var(--navy);font-weight:700;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;margin-top:4px}
+.bsub:hover{filter:brightness(1.08);transform:translateY(-1px)}
 
-/* SINGLE RESPONSIVE BLOCK - NO CONFLICTS */
+/* ── FOOTER ── */
+footer{background:var(--navy);border-top:1px solid rgba(201,151,58,.1)}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;padding:48px 0 36px}
+.fbrand p{font-size:12px;color:rgba(255,255,255,.3);line-height:1.7;margin-top:9px;max-width:210px}
+.fcol h5{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
+.fcol ul{list-style:none;display:grid;gap:7px}
+.fcol li a,.fcol li span{font-size:12px;color:rgba(255,255,255,.35);cursor:pointer;transition:color .2s;display:block}
+.fcol li a:hover,.fcol li span:hover{color:rgba(255,255,255,.7)}
+.fbot{border-top:1px solid rgba(255,255,255,.05);padding:16px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.fbot p{font-size:11px;color:rgba(255,255,255,.2)}
+.flinks{display:flex;gap:13px}
+.flinks a{font-size:11px;color:rgba(255,255,255,.2);transition:color .2s}
+.flinks a:hover{color:rgba(255,255,255,.5)}
+
+/* ── RESPONSIVE — SINGLE CLEAN BLOCK ── */
 @media (max-width:1024px){
-  .hamburger{display:flex}
-  .nav-links{display:none;position:fixed;top:66px;left:0;right:0;background:rgba(11,31,53,0.99);flex-direction:column;padding:24px 28px;gap:20px;border-bottom:1px solid rgba(201,151,58,0.15);z-index:999}
-  .nav-links.open{display:flex}
-  .hero-inner{grid-template-columns:1fr;gap:40px;padding:60px 28px}
-  .about-grid,.contact-grid{grid-template-columns:1fr;gap:32px}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
-  .bundles,.svc-grid{grid-template-columns:1fr}
-  .jur-strip{grid-template-columns:repeat(4,1fr)}
-  .jur-cards{grid-template-columns:repeat(2,1fr)}
-  .ri-bundle{flex-direction:column;padding:26px 24px}
-  .ri-bright{align-items:flex-start}
-  .tc-feats{grid-template-columns:1fr}
-  .ri-feats{grid-template-columns:1fr}
-  .ri-grid{grid-template-columns:1fr}
+  .hbg{display:flex}
+  .nl{display:none;position:fixed;top:66px;left:0;right:0;background:rgba(11,31,53,.99);flex-direction:column;padding:22px 24px;gap:18px;border-bottom:1px solid rgba(201,151,58,.15);z-index:9998}
+  .nl.open{display:flex}
+  .hero-wrap{grid-template-columns:1fr;gap:36px;padding:56px 24px}
+  .hcards{grid-template-columns:1fr}
+  .aboutg{grid-template-columns:1fr;gap:28px}
+  .contg{grid-template-columns:1fr;gap:28px}
+  .fgrid{grid-template-columns:1fr 1fr;gap:24px}
+  .bgrids{grid-template-columns:1fr}
+  .svcg{grid-template-columns:repeat(2,1fr)}
+  .jstrip{grid-template-columns:repeat(4,1fr)}
+  .jcards{grid-template-columns:repeat(2,1fr)}
+  .ribundle{flex-direction:column;padding:22px 20px}
+  .ribright{align-items:flex-start}
+  .tfeats{grid-template-columns:1fr}
+  .rifeats{grid-template-columns:1fr}
+  .rigrid{grid-template-columns:1fr}
 }
 @media (max-width:600px){
-  .stats-inner{grid-template-columns:repeat(3,1fr)}
-  .hero-cards,.lob-grid,.books-grid,.jur-cards,.footer-grid{grid-template-columns:1fr}
-  .jur-strip{grid-template-columns:repeat(2,1fr)}
-  .form-row{grid-template-columns:1fr}
+  .sgrid{grid-template-columns:repeat(3,1fr)}
+  .lob,.bgrid,.jcards,.fgrid{grid-template-columns:1fr}
+  .jstrip{grid-template-columns:repeat(2,1fr)}
+  .svcg{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .tfeats,.rifeats{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
-
-
 
 <!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <div class="nav-logo" onclick="smoothScroll('#hero')">
-      <svg width="34" height="34" viewBox="0 0 72 72" fill="none">
-        <circle cx="36" cy="36" r="34" fill="#0f2a4a" stroke="rgba(201,151,58,0.4)" stroke-width="1.5"/>
-        <text x="36" y="31" font-family="serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">ML</text>
-        <polyline points="14,52 26,40 34,46 44,34 58,28" stroke="#f4a429" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <polygon points="54,24 62,24 62,32" fill="#f4a429"/>
-      </svg>
-      <div>
-        <div class="nav-brand">ML FinCrime</div>
-        <div class="nav-tag">Automation Lab</div>
-      </div>
+  <div class="ni">
+    <a href="#" class="logo" onclick="ss('#hero');return false">
+      <svg width="32" height="32" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="#0f2a4a" stroke="rgba(201,151,58,.4)" stroke-width="1.5"/><text x="36" y="31" font-family="serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">ML</text><polyline points="14,52 26,40 34,46 44,34 58,28" stroke="#f4a429" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="54,24 62,24 62,32" fill="#f4a429"/></svg>
+      <div><div class="logo-txt">ML FinCrime</div><div class="logo-sub">Automation Lab</div></div>
+    </a>
+    <div class="nl" id="nl">
+      <a onclick="ss('#tools');cn()">AML Tools</a>
+      <a onclick="ss('#reinsurance');cn()">Reinsurance</a>
+      <a onclick="ss('#jurisdictions');cn()">Coverage</a>
+      <a onclick="ss('#services');cn()">Services</a>
+      <a onclick="ss('#about');cn()">About</a>
+      <a href="blog.html" onclick="cn()">Insights</a>
+      <a onclick="ss('#contact');cn()" class="cta">Get in Touch</a>
     </div>
-    <div class="nav-links" id="navLinks">
-      <a onclick="smoothScroll('#tools');closeNav()">AML Tools</a>
-      <a onclick="smoothScroll('#reinsurance');closeNav()">Reinsurance</a>
-      <a onclick="smoothScroll('#jurisdictions');closeNav()">Coverage</a>
-      <a onclick="smoothScroll('#services');closeNav()">Services</a>
-      <a onclick="smoothScroll('#about');closeNav()">About</a>
-      <a href="blog.html" onclick="closeNav()">Insights</a>
-      <a onclick="smoothScroll('#contact');closeNav()" class="nav-cta">Get in Touch</a
-    </div>
-    <div class="hamburger" onclick="toggleNav()">
+    <button class="hbg" id="hbg" onclick="tn()" aria-label="Menu">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner">
+  <div class="hero-wrap">
     <div>
-      <div class="hero-eyebrow">
-        <div class="hero-dot"></div>
-        <span>FATF-Aligned · 7 Jurisdictions · 2025 Legislation</span>
-      </div>
+      <div class="badge"><div class="dot"></div><span>FATF-Aligned · 7 Jurisdictions · 2025 Legislation</span></div>
       <h1>Compliance Tools<br>Built for <em>Practitioners,</em><br>Not Administrators.</h1>
       <p class="hero-sub">Professional AML/CFT assessment tools and reinsurance compliance resources for compliance officers, MLROs, and regional compliance teams — at a price that doesn't require board approval.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="smoothScroll('#tools')">Explore AML Tools →</button>
-        <button class="btn-outline" onclick="smoothScroll('#reinsurance')">Reinsurance Series →</button>
+        <button class="btn-g" onclick="ss('#tools')">Explore AML Tools →</button>
+        <button class="btn-o" onclick="ss('#reinsurance')">Reinsurance Series →</button>
       </div>
-      <div class="hero-trust">
-        <div class="trust-item">FATF-Aligned</div>
-        <div class="trust-item">7 Jurisdictions</div>
-        <div class="trust-item">MAS Singapore</div>
-        <div class="trust-item">2025 Legislation</div>
+      <div class="trust">
+        <div class="trust-i">FATF-Aligned</div>
+        <div class="trust-i">7 Jurisdictions</div>
+        <div class="trust-i">MAS Singapore</div>
+        <div class="trust-i">2025 Legislation</div>
       </div>
     </div>
-    <div class="hero-cards">
-      <div class="hero-card" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gqgxzl','_blank')">
+    <div class="hcards">
+      <div class="hcard" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gqgxzl','_blank')">
         <span class="hc-tag">CRR Pro v8 · AML Tool 01</span>
-        <div class="hc-title">Customer Risk Rating</div>
-        <div class="hc-desc">8 FATF risk factors · composite scoring · live sanctions · 7 jurisdictions</div>
-        <div class="hc-price">$179 <small>single-user licence</small></div>
+        <div class="hc-ttl">Customer Risk Rating</div>
+        <div class="hc-dsc">8 FATF risk factors · composite scoring · live sanctions · 7 jurisdictions</div>
+        <div class="hc-prc">$179 <small>single-user licence</small></div>
       </div>
-      <div class="hero-card" onclick="window.open('https://mlfincrimelab.gumroad.com/l/vihkfi','_blank')">
+      <div class="hcard" onclick="window.open('https://mlfincrimelab.gumroad.com/l/vihkfi','_blank')">
         <span class="hc-tag">EDD Pro v1 · AML Tool 02</span>
-        <div class="hc-title">Enhanced Due Diligence</div>
-        <div class="hc-desc">8-module EDD workflow · UBO · SoF/SoW · PEP assessment</div>
-        <div class="hc-price">$199 <small>single-user licence</small></div>
+        <div class="hc-ttl">Enhanced Due Diligence</div>
+        <div class="hc-dsc">8-module EDD workflow · UBO · SoF/SoW · PEP assessment</div>
+        <div class="hc-prc">$199 <small>single-user licence</small></div>
       </div>
-      <div class="hero-card" onclick="window.open('https://mlfincrimelab.gumroad.com/l/ijisw','_blank')">
+      <div class="hcard" onclick="window.open('https://mlfincrimelab.gumroad.com/l/ijisw','_blank')">
         <span class="hc-tag">Reinsurance Series · eBook 01</span>
-        <div class="hc-title">From Policy to Practice</div>
-        <div class="hc-desc">9-chapter MAS-aligned operationalization playbook · APAC edition</div>
-        <div class="hc-price">$29 <small>PDF instant download</small></div>
+        <div class="hc-ttl">From Policy to Practice</div>
+        <div class="hc-dsc">9-chapter MAS-aligned operationalization playbook · APAC edition</div>
+        <div class="hc-prc">$29 <small>PDF instant download</small></div>
       </div>
-      <div class="hero-card" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gezzhz','_blank')">
+      <div class="hcard" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gezzhz','_blank')">
         <span class="hc-tag">Reinsurance Series · Full Bundle</span>
-        <div class="hc-title">Complete Toolkit — 5 Files</div>
-        <div class="hc-desc">2 eBooks + Excel workbook + 8 checklists · save $37</div>
-        <div class="hc-price">$99 <small>all formats · bundle</small></div>
+        <div class="hc-ttl">Complete Toolkit — 5 Files</div>
+        <div class="hc-dsc">2 eBooks + Excel workbook + 8 checklists · save $37</div>
+        <div class="hc-prc">$99 <small>all formats · bundle</small></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- STATS -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">AML/CFT Tools</div></div>
-    <div class="stat-item"><div class="stat-n">7</div><div class="stat-l">Jurisdictions</div></div>
-    <div class="stat-item"><div class="stat-n">8</div><div class="stat-l">Institution Types</div></div>
-    <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Reinsurance Products</div></div>
-    <div class="stat-item"><div class="stat-n">100%</div><div class="stat-l">Browser-Based</div></div>
+<div class="sbar">
+  <div class="sgrid">
+    <div class="sitem"><div class="snum">4</div><div class="slbl">AML/CFT Tools</div></div>
+    <div class="sitem"><div class="snum">7</div><div class="slbl">Jurisdictions</div></div>
+    <div class="sitem"><div class="snum">8</div><div class="slbl">Institution Types</div></div>
+    <div class="sitem"><div class="snum">4</div><div class="slbl">Reinsurance Products</div></div>
+    <div class="sitem"><div class="snum">100%</div><div class="slbl">Browser-Based</div></div>
   </div>
 </div>
 
 <!-- AML TOOLS -->
 <section style="background:var(--white)" id="tools">
-  <div class="container">
-    <div class="sec-label">AML / CFT Tools</div>
-    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);max-width:520px">Four Tools.<br><em>One Complete AML/CFT Programme.</em></h2>
-    <div class="divider"></div>
-    <p style="max-width:520px;font-size:13px;margin-top:4px">Each tool is a standalone HTML file — no installation, no cloud, no data sent anywhere. Works in any browser. Audit-ready PDF on every assessment.</p>
+  <div class="ctr">
+    <div class="slabel">AML / CFT Tools</div>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.7rem);max-width:500px">Four Tools.<br><em>One Complete AML/CFT Programme.</em></h2>
+    <div class="divd"></div>
+    <p style="max-width:500px;font-size:13px;margin-top:4px">Each tool is a standalone HTML file — no installation, no cloud, no data sent anywhere. Works in any browser. Audit-ready PDF on every assessment.</p>
 
-    <!-- CRR Pro -->
-    <div class="tool-card fade-in" style="margin-top:44px">
-      <div class="tc-hdr">
-        <div>
-          <span class="tc-tag">Tool 01 · CRR Pro v8</span>
-          <div class="tc-title">Customer Risk Rating</div>
-          <div class="tc-sub">FATF-aligned composite risk scoring for customer onboarding, periodic review, and material change assessments. Covers 8 institution types including Reinsurers.</div>
-        </div>
-        <div><div class="tc-price">$179</div><div class="tc-pnote">USD · single-user licence</div></div>
+    <div class="tcard fi" style="margin-top:40px">
+      <div class="th">
+        <div><span class="ttag">Tool 01 · CRR Pro v8</span><div class="ttl">Customer Risk Rating</div><div class="tsub">FATF-aligned composite risk scoring for onboarding, periodic review, and material change assessments. 8 institution types including Reinsurers.</div></div>
+        <div><div class="tprc">$179</div><div class="tpn">USD · single-user licence</div></div>
       </div>
-      <div class="tc-body">
-        <div class="tc-feats">
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>8 FATF-Aligned Risk Factors</strong>Customer type, geography, product/channel, SoF, SoW, adverse media, ownership, cross-border.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>Live Sanctions Screening</strong>Real-time OFAC SDN, UN Security Council, and EU Financial Sanctions — free, no API key.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>8 Institution Types</strong>Bank, Fintech, Insurer, VASP, MSB, Securities, Trust/CS, and Reinsurer.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>Audit-Ready PDF Report</strong>8 sections including Assessment ID, Risk Determination, Sanctions, Scoring, and Sign-Off.</div></div>
+      <div class="tb">
+        <div class="tfeats">
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>8 FATF-Aligned Risk Factors</strong>Customer type, geography, product, SoF, SoW, adverse media, ownership, cross-border.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>Live Sanctions Screening</strong>Real-time OFAC SDN, UN Security Council, EU Financial Sanctions — no API key.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>8 Institution Types</strong>Bank, Fintech, Insurer, VASP, MSB, Securities, Trust/CS, and Reinsurer.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>Audit-Ready PDF Report</strong>8 sections including Assessment ID, Risk Determination, Sanctions, and Sign-Off.</div></div>
         </div>
-        <div class="tc-chips"><span class="chip">FATF Rec.10</span><span class="chip">MAS Notice 626</span><span class="chip">MLRs 2017</span><span class="chip">BSA/FinCEN</span><span class="chip">AMLR 2024</span><span class="chip">AMLO Cap.615</span></div>
-        <div class="tc-foot">
-          <button class="btn-buy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gqgxzl','_blank')">Buy Now — $179 →</button>
-          <button class="btn-ghost" onclick="smoothScroll('#contact')">Request Demo</button>
+        <div class="tchips"><span class="chip">FATF Rec.10</span><span class="chip">MAS Notice 626</span><span class="chip">MLRs 2017</span><span class="chip">BSA/FinCEN</span><span class="chip">AMLR 2024</span><span class="chip">AMLO Cap.615</span></div>
+        <div class="tfoot">
+          <button class="bbuy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gqgxzl','_blank')">Buy Now — $179 →</button>
+          <button class="bghost" onclick="ss('#contact')">Request Demo</button>
         </div>
       </div>
     </div>
 
-    <!-- EDD Pro -->
-    <div class="tool-card fade-in">
-      <div class="tc-hdr">
-        <div>
-          <span class="tc-tag">Tool 02 · EDD Pro v1</span>
-          <div class="tc-title">Enhanced Due Diligence</div>
-          <div class="tc-sub">Structured 8-module EDD workflow from trigger identification through to SM approval and enhanced monitoring setup.</div>
-        </div>
-        <div><div class="tc-price">$199</div><div class="tc-pnote">USD · single-user licence</div></div>
+    <div class="tcard fi">
+      <div class="th">
+        <div><span class="ttag">Tool 02 · EDD Pro v1</span><div class="ttl">Enhanced Due Diligence</div><div class="tsub">Structured 8-module EDD workflow from trigger identification through to SM approval and monitoring setup.</div></div>
+        <div><div class="tprc">$199</div><div class="tpn">USD · single-user licence</div></div>
       </div>
-      <div class="tc-body">
-        <div class="tc-feats">
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>Smart Trigger Identification</strong>Mandatory and discretionary EDD triggers, filtered by institution type and jurisdiction.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>UBO Deep Dive</strong>Beneficial ownership to natural person level — nominee/bearer share assessment included.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>Separate SoF & SoW Modules</strong>Source of Funds and Source of Wealth assessed independently with separate evidence grading.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>PEP Assessment Module</strong>Foreign/domestic/IO PEP. De-PEP assessment with jurisdiction-specific timelines.</div></div>
+      <div class="tb">
+        <div class="tfeats">
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>Smart Trigger Identification</strong>Mandatory and discretionary EDD triggers, filtered by institution type and jurisdiction.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>UBO Deep Dive</strong>Beneficial ownership to natural person level — nominee/bearer share assessment included.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>Separate SoF &amp; SoW Modules</strong>Source of Funds and Source of Wealth assessed independently with evidence grading.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>PEP Assessment Module</strong>Foreign/domestic/IO PEP. De-PEP assessment with jurisdiction-specific timelines.</div></div>
         </div>
-        <div class="tc-chips"><span class="chip">FATF Rec.10/12</span><span class="chip">FCA PEP Jul 2025</span><span class="chip">FinCEN CDD Rule</span><span class="chip">MAS COSMIC</span><span class="chip">AMLR 2024</span></div>
-        <div class="tc-foot">
-          <button class="btn-buy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/vihkfi','_blank')">Buy Now — $199 →</button>
-          <button class="btn-ghost" onclick="smoothScroll('#contact')">Request Demo</button>
+        <div class="tchips"><span class="chip">FATF Rec.10/12</span><span class="chip">FCA PEP Jul 2025</span><span class="chip">FinCEN CDD Rule</span><span class="chip">MAS COSMIC</span><span class="chip">AMLR 2024</span></div>
+        <div class="tfoot">
+          <button class="bbuy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/vihkfi','_blank')">Buy Now — $199 →</button>
+          <button class="bghost" onclick="ss('#contact')">Request Demo</button>
         </div>
       </div>
     </div>
 
-    <!-- SAR/STR Pro -->
-    <div class="tool-card fade-in">
-      <div class="tc-hdr">
-        <div>
-          <span class="tc-tag">Tool 03 · SAR/STR Pro v1</span>
-          <div class="tc-title">SAR / STR Decision & Drafting</div>
-          <div class="tc-sub">Complete US SAR and international STR workflow — threshold checker, red flag library, narrative drafter, and 12-point quality checker.</div>
-        </div>
-        <div><div class="tc-price">$199</div><div class="tc-pnote">USD · single-user licence</div></div>
+    <div class="tcard fi">
+      <div class="th">
+        <div><span class="ttag">Tool 03 · SAR/STR Pro v1</span><div class="ttl">SAR / STR Decision &amp; Drafting</div><div class="tsub">Complete US SAR and international STR workflow — threshold checker, red flag library, narrative drafter.</div></div>
+        <div><div class="tprc">$199</div><div class="tpn">USD · single-user licence</div></div>
       </div>
-      <div class="tc-body">
-        <div class="tc-feats">
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>US SAR + International STR</strong>FinCEN/BSA $5,000 threshold. International: UK, EU, Singapore, HK, UAE.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>FinCEN Oct 2025 Guidance</strong>Structuring clarification, 120-day continuing SAR timeline, no-file documentation.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>29-Item Red Flag Library</strong>Searchable across 8 categories including reinsurance-specific typologies.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>Narrative Auto-Drafter</strong>Generates all 4 narrative sections. Quality checker before filing.</div></div>
+      <div class="tb">
+        <div class="tfeats">
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>US SAR + International STR</strong>FinCEN/BSA $5,000 threshold. International: UK, EU, Singapore, HK, UAE.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>FinCEN Oct 2025 Guidance</strong>Structuring clarification, 120-day continuing SAR timeline, no-file documentation.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>29-Item Red Flag Library</strong>Searchable across 8 categories including reinsurance-specific typologies.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>Narrative Auto-Drafter</strong>Generates all 4 narrative sections. 12-point quality checker before filing.</div></div>
         </div>
-        <div class="tc-chips"><span class="chip">BSA/FinCEN</span><span class="chip">Oct 2025 FAQ</span><span class="chip">POCA 2002</span><span class="chip">CDSA/TSOFA</span><span class="chip">UAE AML Law</span></div>
-        <div class="tc-foot">
-          <button class="btn-buy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/uxerf','_blank')">Buy Now — $199 →</button>
-          <button class="btn-ghost" onclick="smoothScroll('#contact')">Request Demo</button>
+        <div class="tchips"><span class="chip">BSA/FinCEN</span><span class="chip">Oct 2025 FAQ</span><span class="chip">POCA 2002</span><span class="chip">CDSA/TSOFA</span><span class="chip">UAE AML Law</span></div>
+        <div class="tfoot">
+          <button class="bbuy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/uxerf','_blank')">Buy Now — $199 →</button>
+          <button class="bghost" onclick="ss('#contact')">Request Demo</button>
         </div>
       </div>
     </div>
 
-    <!-- Sanctions Pro -->
-    <div class="tool-card fade-in">
-      <div class="tc-hdr">
-        <div>
-          <span class="tc-tag">Tool 04 · Sanctions Pro v1</span>
-          <div class="tc-title">Sanctions Assessment</div>
-          <div class="tc-sub">Structured financial sanctions assessment — live screening, OFAC 50% Rule analysis, 8 jurisdiction obligations, and evasion red flags.</div>
-        </div>
-        <div><div class="tc-price">$199</div><div class="tc-pnote">USD · single-user licence</div></div>
+    <div class="tcard fi">
+      <div class="th">
+        <div><span class="ttag">Tool 04 · Sanctions Pro v1</span><div class="ttl">Sanctions Assessment</div><div class="tsub">Structured financial sanctions assessment — live screening, OFAC 50% Rule analysis, evasion red flags.</div></div>
+        <div><div class="tprc">$199</div><div class="tpn">USD · single-user licence</div></div>
       </div>
-      <div class="tc-body">
-        <div class="tc-feats">
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>Live Sanctions Screening</strong>OFAC SDN, UN SC, EU FSF — free, real-time, no API key required.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>OFAC 50% Rule Calculator</strong>Add UBOs with ownership percentages. Auto-aggregates and flags SDN ownership threshold.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>8 Jurisdiction Obligations</strong>US, UK, EU, Singapore, UAE, HK, India, Labuan — all mapped and current.</div></div>
-          <div class="tc-feat"><div class="tc-feat-ic">✓</div><div class="tc-feat-tx"><strong>Proliferation Financing</strong>DPRK, Iran, dual-use goods. FATF June 2025 PF evasion typologies.</div></div>
+      <div class="tb">
+        <div class="tfeats">
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>Live Sanctions Screening</strong>OFAC SDN, UN SC, EU FSF — free, real-time, no API key required.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>OFAC 50% Rule Calculator</strong>Add UBOs with ownership %. Auto-aggregates and flags SDN ownership threshold.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>8 Jurisdiction Obligations</strong>US, UK, EU, Singapore, UAE, HK, India, Labuan — all mapped and current.</div></div>
+          <div class="tfeat"><div class="tfic">✓</div><div class="tftx"><strong>Proliferation Financing</strong>DPRK, Iran, dual-use goods. FATF June 2025 PF evasion typologies.</div></div>
         </div>
-        <div class="tc-chips"><span class="chip">OFAC/IEEPA</span><span class="chip">SAMLA 2018</span><span class="chip">EU Reg.269/2014</span><span class="chip">EBA GL Dec 2025</span><span class="chip">FSMA 2022</span></div>
-        <div class="tc-foot">
-          <button class="btn-buy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/jktfy','_blank')">Buy Now — $199 →</button>
-          <button class="btn-ghost" onclick="smoothScroll('#contact')">Request Demo</button>
+        <div class="tchips"><span class="chip">OFAC/IEEPA</span><span class="chip">SAMLA 2018</span><span class="chip">EU Reg.269/2014</span><span class="chip">EBA GL Dec 2025</span><span class="chip">FSMA 2022</span></div>
+        <div class="tfoot">
+          <button class="bbuy" onclick="window.open('https://mlfincrimelab.gumroad.com/l/jktfy','_blank')">Buy Now — $199 →</button>
+          <button class="bghost" onclick="ss('#contact')">Request Demo</button>
         </div>
       </div>
     </div>
 
-    <!-- AML Bundles -->
-    <div class="bundles fade-in">
-      <div class="bcard">
-        <div class="bcard-hdr">
-          <div class="bcard-name">CRR Pro v8</div>
-          <div class="bcard-sub">Customer Risk Rating</div>
-          <div class="bcard-price">$179 <small>USD</small></div>
-        </div>
-        <div class="bcard-body">
-          <ul class="bcard-list">
-            <li>8 FATF-aligned risk factors</li>
-            <li>8 institution types incl. Reinsurers</li>
-            <li>Live sanctions screening</li>
-            <li>8-section PDF audit report</li>
-          </ul>
-          <button class="btn-blk nv" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gqgxzl','_blank')">Buy Now →</button>
-        </div>
+    <div class="bgrids fi">
+      <div class="bc">
+        <div class="bch"><div class="bcn">CRR Pro v8</div><div class="bcs">Customer Risk Rating</div><div class="bcp">$179 <small>USD</small></div></div>
+        <div class="bcb"><ul class="bclist"><li>8 FATF-aligned risk factors</li><li>8 institution types incl. Reinsurers</li><li>Live sanctions screening</li><li>8-section PDF audit report</li></ul>
+        <button class="bblk nv" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gqgxzl','_blank')">Buy Now →</button></div>
       </div>
-      <div class="bcard feat">
-        <div class="bcard-hdr">
-          <div class="bcard-badge">Most Popular</div>
-          <div class="bcard-name">CRR + EDD Bundle</div>
-          <div class="bcard-sub">Complete onboarding suite</div>
-          <div class="bcard-price">$319 <small>save $59</small></div>
-        </div>
-        <div class="bcard-body">
-          <ul class="bcard-list">
-            <li>Everything in CRR Pro v8</li>
-            <li>EDD Pro v1 — full 8-module workflow</li>
-            <li>PEP + UBO + SoF/SoW modules</li>
-            <li>9-section EDD PDF report</li>
-          </ul>
-          <button class="btn-blk gold" onclick="smoothScroll('#contact')">Enquire About Bundle →</button>
-        </div>
+      <div class="bc feat">
+        <div class="bch"><div class="bcbadge">Most Popular</div><div class="bcn">CRR + EDD Bundle</div><div class="bcs">Complete onboarding suite</div><div class="bcp">$319 <small>save $59</small></div></div>
+        <div class="bcb"><ul class="bclist"><li>Everything in CRR Pro v8</li><li>EDD Pro v1 — full 8-module workflow</li><li>PEP + UBO + SoF/SoW modules</li><li>9-section EDD PDF report</li></ul>
+        <button class="bblk gold" onclick="ss('#contact')">Enquire About Bundle →</button></div>
       </div>
-      <div class="bcard">
-        <div class="bcard-hdr">
-          <div class="bcard-name">Full Suite — All 4 Tools</div>
-          <div class="bcard-sub">CRR + EDD + SAR + Sanctions</div>
-          <div class="bcard-price">$549 <small>save $128</small></div>
-        </div>
-        <div class="bcard-body">
-          <ul class="bcard-list">
-            <li>All 4 tools in one purchase</li>
-            <li>SAR/STR narrative drafter</li>
-            <li>Sanctions 50% Rule calculator</li>
-            <li>Complete AML/CFT programme</li>
-          </ul>
-          <button class="btn-blk nv" onclick="smoothScroll('#contact')">Enquire About Suite →</button>
-        </div>
+      <div class="bc">
+        <div class="bch"><div class="bcn">Full Suite — All 4 Tools</div><div class="bcs">CRR + EDD + SAR + Sanctions</div><div class="bcp">$549 <small>save $128</small></div></div>
+        <div class="bcb"><ul class="bclist"><li>All 4 tools in one purchase</li><li>SAR/STR narrative drafter</li><li>Sanctions 50% Rule calculator</li><li>Complete AML/CFT programme</li></ul>
+        <button class="bblk nv" onclick="ss('#contact')">Enquire About Suite →</button></div>
       </div>
     </div>
 
-    <div class="guide-box fade-in">
-      <div>
-        <h3>Free Methodology Guide</h3>
-        <p>Download our free 18-page guide — covering the risk scoring formula, regulatory framework, and jurisdiction-by-jurisdiction coverage. No purchase required.</p>
-      </div>
-      <button class="btn-primary" onclick="window.open('https://mlfincrimelab.gumroad.com/l/fgmxkn','_blank')">Download Free Guide →</button>
+    <div class="gbox fi">
+      <div><h3>Free Methodology Guide</h3><p>Download our free 18-page guide covering the risk scoring formula, regulatory framework, and jurisdiction coverage. No purchase required.</p></div>
+      <button class="btn-g" onclick="window.open('https://mlfincrimelab.gumroad.com/l/fgmxkn','_blank')">Download Free Guide →</button>
     </div>
   </div>
 </section>
 
 <!-- JURISDICTIONS -->
 <section style="background:var(--navy2)" id="jurisdictions">
-  <div class="container">
-    <div class="sec-label" style="color:var(--gold)">Regulatory Coverage</div>
-    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:#fff;max-width:520px">7 Jurisdictions.<br><em>2025-Current Legislation.</em></h2>
-    <div class="divider"></div>
-    <div class="jur-strip">
-      <div class="jur-item"><div class="jur-flag">🇸🇬</div><div class="jur-name">Singapore</div><div class="jur-leg">MAS Jul 2025</div></div>
-      <div class="jur-item"><div class="jur-flag">🇬🇧</div><div class="jur-name">UK</div><div class="jur-leg">FCA Jul 2025</div></div>
-      <div class="jur-item"><div class="jur-flag">🇪🇺</div><div class="jur-name">EU</div><div class="jur-leg">AMLA / AMLR</div></div>
-      <div class="jur-item"><div class="jur-flag">🇺🇸</div><div class="jur-name">US</div><div class="jur-leg">FinCEN Oct 2025</div></div>
-      <div class="jur-item"><div class="jur-flag">🇮🇳</div><div class="jur-name">India</div><div class="jur-leg">PMLA 2023</div></div>
-      <div class="jur-item"><div class="jur-flag">🇭🇰</div><div class="jur-name">Hong Kong</div><div class="jur-leg">AMLO Jun 2023</div></div>
-      <div class="jur-item"><div class="jur-flag">🇲🇾</div><div class="jur-name">Labuan</div><div class="jur-leg">FSA May 2024</div></div>
+  <div class="ctr">
+    <div class="slabel" style="color:var(--gold)">Regulatory Coverage</div>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.7rem);color:#fff;max-width:500px">7 Jurisdictions.<br><em>2025-Current Legislation.</em></h2>
+    <div class="divd"></div>
+    <div class="jstrip">
+      <div class="ji"><div class="jflag">🇸🇬</div><div class="jname">Singapore</div><div class="jleg">MAS Jul 2025</div></div>
+      <div class="ji"><div class="jflag">🇬🇧</div><div class="jname">UK</div><div class="jleg">FCA Jul 2025</div></div>
+      <div class="ji"><div class="jflag">🇪🇺</div><div class="jname">EU</div><div class="jleg">AMLA / AMLR</div></div>
+      <div class="ji"><div class="jflag">🇺🇸</div><div class="jname">US</div><div class="jleg">FinCEN Oct 2025</div></div>
+      <div class="ji"><div class="jflag">🇮🇳</div><div class="jname">India</div><div class="jleg">PMLA 2023</div></div>
+      <div class="ji"><div class="jflag">🇭🇰</div><div class="jname">Hong Kong</div><div class="jleg">AMLO Jun 2023</div></div>
+      <div class="ji"><div class="jflag">🇲🇾</div><div class="jname">Labuan</div><div class="jleg">FSA May 2024</div></div>
     </div>
-    <div class="jur-cards">
-      <div class="jur-card"><span class="jur-num">01 — Singapore</span><h4>MAS Notice 626 · Jul 2025</h4><p>Proliferation financing now formally within ML/TF scope. 1 business day STR for sanctioned-party cases.</p></div>
-      <div class="jur-card"><span class="jur-num">02 — United Kingdom</span><h4>MLRs 2017 · FCA Jul 2025</h4><p>FCA PEP Guidance revised July 2025. ECCTA 2023 failure-to-prevent-fraud in force.</p></div>
-      <div class="jur-card"><span class="jur-num">03 — European Union</span><h4>AMLR 2024 · AMLA Jul 2025</h4><p>AMLA operational 1 July 2025. EBA Guidelines December 2025. EU 19th Russia Sanctions Package.</p></div>
-      <div class="jur-card"><span class="jur-num">04 — United States</span><h4>BSA · FinCEN Oct 2025 FAQ</h4><p>FinCEN October 2025 FAQ — structuring SAR guidance, 120-day continuing activity timeline.</p></div>
-      <div class="jur-card"><span class="jur-num">05 — Hong Kong</span><h4>AMLO Cap.615 · Jun 2023</h4><p>Multi-regulator: HKMA, SFC, IA, CED. Stablecoins Ordinance May 2025.</p></div>
-      <div class="jur-card"><span class="jur-num">06 — Labuan</span><h4>Labuan FSA · May 2024</h4><p>AML/CFT/CPF and TFS Guidelines revised May 2024. Reinsurance framework included.</p></div>
+    <div class="jcards">
+      <div class="jcard fi"><span class="jnum">01 — Singapore</span><h4>MAS Notice 626 · Jul 2025</h4><p>Proliferation financing now within ML/TF scope. 1 business day STR for sanctioned-party cases.</p></div>
+      <div class="jcard fi"><span class="jnum">02 — United Kingdom</span><h4>MLRs 2017 · FCA Jul 2025</h4><p>FCA PEP Guidance revised July 2025. ECCTA 2023 failure-to-prevent-fraud in force.</p></div>
+      <div class="jcard fi"><span class="jnum">03 — European Union</span><h4>AMLR 2024 · AMLA Jul 2025</h4><p>AMLA operational 1 July 2025. EBA Guidelines December 2025. 19th Russia Sanctions Package.</p></div>
+      <div class="jcard fi"><span class="jnum">04 — United States</span><h4>BSA · FinCEN Oct 2025 FAQ</h4><p>FinCEN October 2025 FAQ — structuring SAR guidance, 120-day continuing activity timeline.</p></div>
+      <div class="jcard fi"><span class="jnum">05 — Hong Kong</span><h4>AMLO Cap.615 · Jun 2023</h4><p>Multi-regulator: HKMA, SFC, IA, CED. Stablecoins Ordinance May 2025.</p></div>
+      <div class="jcard fi"><span class="jnum">06 — Labuan</span><h4>Labuan FSA · May 2024</h4><p>AML/CFT/CPF and TFS Guidelines revised May 2024. Reinsurance framework included.</p></div>
     </div>
   </div>
 </section>
 
-<!-- REINSURANCE SERIES -->
+<!-- REINSURANCE -->
 <section style="background:var(--navy)" id="reinsurance">
-  <div class="container">
-    <div class="sec-label" style="color:var(--gold)">Reinsurance Series</div>
-    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:#fff;max-width:560px">Reinsurance Compliance.<br><em>Operationalized.</em></h2>
-    <div class="divider"></div>
-    <p style="max-width:560px;font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;line-height:1.8">Practitioner-built compliance frameworks, working tools, and LOB guides for reinsurance compliance officers across Singapore and Asia Pacific. MAS-aligned. Covers all major P&C and L&H lines.</p>
-
-    <div class="ri-grid">
-
-      <!-- PRODUCT 1: eBook — From Policy to Practice — /l/ijisw -->
-      <div class="ri-card fade-in">
-        <div class="ri-top">
-          <div>
-            <span class="ri-type">eBook · Series 01</span>
-            <div class="ri-name">From Policy to Practice:<br>Operationalizing Compliance</div>
-          </div>
-          <div class="ri-pb">
-            <div class="ri-price">$29</div>
-            <div class="ri-pn">PDF · instant download</div>
-          </div>
+  <div class="ctr">
+    <div class="slabel" style="color:var(--gold)">Reinsurance Series</div>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.7rem);color:#fff;max-width:540px">Reinsurance Compliance.<br><em>Operationalized.</em></h2>
+    <div class="divd"></div>
+    <p style="max-width:540px;font-size:13px;color:rgba(255,255,255,.5);margin-top:4px;line-height:1.8">Practitioner-built compliance frameworks for reinsurance compliance officers across Singapore and Asia Pacific. MAS-aligned. Covers all major P&amp;C and L&amp;H lines.</p>
+    <div class="rigrid">
+      <!-- Product 1: eBook — /l/ijisw -->
+      <div class="ricard fi">
+        <div class="ritop">
+          <div><span class="ritype">eBook · Series 01</span><div class="rinm">From Policy to Practice:<br>Operationalizing Compliance</div></div>
+          <div class="ripb"><div class="riprc">$29</div><div class="ripn">PDF · instant download</div></div>
         </div>
-        <div class="ri-body">
-          <div class="ri-feats">
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Reinsurance Fundamentals</strong>Treaty vs facultative, lifecycle, proportional vs non-proportional.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>MAS & APAC Landscape</strong>MAS Notice 133 (RBC2), AML/CFT Guidelines, PDPA — mapped for reinsurers.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>The PACE Model</strong>Parse · Assign · Communicate · Execute — repeatable framework.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>90-Day Onboarding Plan</strong>Structured milestones for junior compliance officers.</div></div>
+        <div class="ribody">
+          <div class="rifeats">
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Reinsurance Fundamentals</strong>Treaty vs facultative, lifecycle, proportional vs non-proportional.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>MAS &amp; APAC Landscape</strong>MAS Notice 133 (RBC2), AML/CFT Guidelines, PDPA — mapped for reinsurers.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>The PACE Model</strong>Parse · Assign · Communicate · Execute — repeatable framework.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>90-Day Onboarding Plan</strong>Structured milestones for junior compliance officers.</div></div>
           </div>
-          <div class="ri-tags">
-            <span class="ri-tg lo">9 Chapters</span>
-            <span class="ri-tg lo">MAS-Aligned</span>
-            <span class="ri-tg lo">APAC Focus</span>
-          </div>
-          <div class="ri-foot">
-            <button class="btn-buy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/ijisw','_blank')">Buy Now — $29 →</button>
-            <button class="btn-ghost" onclick="smoothScroll('#contact')">Enquire</button>
+          <div class="ritags"><span class="ritag lo">9 Chapters</span><span class="ritag lo">MAS-Aligned</span><span class="ritag lo">APAC Focus</span></div>
+          <div class="rifoot">
+            <button class="bbuy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/ijisw','_blank')">Buy Now — $29 →</button>
+            <button class="bghost" onclick="ss('#contact')">Enquire</button>
           </div>
         </div>
       </div>
-
-      <!-- PRODUCT 2: Excel Workbook — /l/fmusk -->
-      <div class="ri-card feat fade-in">
-        <div class="ri-top" style="background:rgba(201,151,58,0.08)">
-          <div>
-            <span class="ri-type">⭐ Excel Workbook · Series 02 · Most Popular</span>
-            <div class="ri-name">9-Sheet Working<br>Compliance Toolkit</div>
-          </div>
-          <div class="ri-pb">
-            <div class="ri-was">$79</div>
-            <div class="ri-price">$49</div>
-            <div class="ri-pn">Excel · instant download</div>
-          </div>
+      <!-- Product 2: Excel — /l/fmusk -->
+      <div class="ricard feat fi">
+        <div class="ritop" style="background:rgba(201,151,58,.07)">
+          <div><span class="ritype">⭐ Excel Workbook · Series 02</span><div class="rinm">9-Sheet Working<br>Compliance Toolkit</div></div>
+          <div class="ripb"><div class="riwas">$79</div><div class="riprc">$49</div><div class="ripn">Excel · instant download</div></div>
         </div>
-        <div class="ri-body">
-          <div class="ri-feats">
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Policy Gap Analysis</strong>Auto-scores gaps 0–10. Flags Critical / High / Medium / Low with action prompts.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Live KPI Dashboard</strong>Enter monthly actuals — RAG status and trend indicators auto-update.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Risk Register</strong>Score likelihood × impact — priority auto-calculates and auto-sorts.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>LOB Risk Matrix</strong>All 6 lines of business rated across 8 compliance dimensions.</div></div>
+        <div class="ribody">
+          <div class="rifeats">
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Policy Gap Analysis</strong>Auto-scores gaps 0–10. Flags Critical/High/Medium/Low with action prompts.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Live KPI Dashboard</strong>Enter monthly actuals — RAG status and trend indicators auto-update.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Risk Register</strong>Score likelihood × impact — priority auto-calculates and auto-sorts.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>LOB Risk Matrix</strong>All 6 lines of business rated across 8 compliance dimensions.</div></div>
           </div>
-          <div class="ri-tags">
-            <span class="ri-tg lo">9 Working Sheets</span>
-            <span class="ri-tg lo">231 Live Formulas</span>
-            <span class="ri-tg lo">Zero Errors</span>
-          </div>
-          <div class="ri-foot">
-            <button class="btn-buy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/fmusk','_blank')">Buy Now — $49 →</button>
-            <button class="btn-ghost" onclick="smoothScroll('#contact')">Enquire</button>
+          <div class="ritags"><span class="ritag lo">9 Working Sheets</span><span class="ritag lo">231 Live Formulas</span><span class="ritag lo">Zero Errors</span></div>
+          <div class="rifoot">
+            <button class="bbuy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/fmusk','_blank')">Buy Now — $49 →</button>
+            <button class="bghost" onclick="ss('#contact')">Enquire</button>
           </div>
         </div>
       </div>
-
-      <!-- PRODUCT 3: LOB eBook — /l/szybon -->
-      <div class="ri-card fade-in">
-        <div class="ri-top">
-          <div>
-            <span class="ri-type">eBook · Series 03</span>
-            <div class="ri-name">Compliance by Line of Business:<br>Marine, Aviation, Trade Credit & L&H</div>
-          </div>
-          <div class="ri-pb">
-            <div class="ri-price">$29</div>
-            <div class="ri-pn">PDF · instant download</div>
-          </div>
+      <!-- Product 3: LOB eBook — /l/szybon -->
+      <div class="ricard fi">
+        <div class="ritop">
+          <div><span class="ritype">eBook · Series 03</span><div class="rinm">Compliance by Line of Business:<br>Marine, Aviation, Trade Credit &amp; L&amp;H</div></div>
+          <div class="ripb"><div class="riprc">$29</div><div class="ripn">PDF · instant download</div></div>
         </div>
-        <div class="ri-body">
-          <div class="ri-feats">
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Marine & Energy</strong>Vessel/IMO screening, AIS monitoring, OFAC 50% Rule, cargo controls.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Aviation</strong>MSN register, lessor screening, Cape Town Convention, EAR/ITAR.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Trade Credit & PR</strong>Country risk, buyer screening, export controls, sovereign obligors.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Life & Health</strong>PDPA data processing agreements, IFRS 17, medical data governance.</div></div>
+        <div class="ribody">
+          <div class="rifeats">
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Marine &amp; Energy</strong>Vessel/IMO screening, AIS monitoring, OFAC 50% Rule, cargo controls.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Aviation</strong>MSN register, lessor screening, Cape Town Convention, EAR/ITAR.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Trade Credit &amp; PR</strong>Country risk, buyer screening, export controls, sovereign obligors.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Life &amp; Health</strong>PDPA data processing agreements, IFRS 17, medical data governance.</div></div>
           </div>
-          <div class="ri-tags">
-            <span class="ri-tg vh">⚓ Marine — Very High</span>
-            <span class="ri-tg hi">✈ Aviation — High</span>
-            <span class="ri-tg hi">💳 Trade Credit — High</span>
-          </div>
-          <div class="ri-foot">
-            <button class="btn-buy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/szybon','_blank')">Buy Now — $29 →</button>
-            <button class="btn-ghost" onclick="smoothScroll('#contact')">Enquire</button>
+          <div class="ritags"><span class="ritag vh">⚓ Marine — Very High</span><span class="ritag hi">✈ Aviation — High</span><span class="ritag hi">💳 Trade Credit — High</span></div>
+          <div class="rifoot">
+            <button class="bbuy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/szybon','_blank')">Buy Now — $29 →</button>
+            <button class="bghost" onclick="ss('#contact')">Enquire</button>
           </div>
         </div>
       </div>
-
-      <!-- PRODUCT 4: Checklists — /l/cuqkr -->
-      <div class="ri-card fade-in">
-        <div class="ri-top">
-          <div>
-            <span class="ri-type">PDF Checklists · Series 04</span>
-            <div class="ri-name">8 Fillable Compliance<br>Working Forms</div>
-          </div>
-          <div class="ri-pb">
-            <div class="ri-was">$38</div>
-            <div class="ri-price">$29</div>
-            <div class="ri-pn">2 PDFs · instant download</div>
-          </div>
+      <!-- Product 4: Checklists — /l/cuqkr -->
+      <div class="ricard fi">
+        <div class="ritop">
+          <div><span class="ritype">PDF Checklists · Series 04</span><div class="rinm">8 Fillable Compliance<br>Working Forms</div></div>
+          <div class="ripb"><div class="riwas">$38</div><div class="riprc">$29</div><div class="ripn">2 PDFs · instant download</div></div>
         </div>
-        <div class="ri-body">
-          <div class="ri-feats">
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Policy Gap Analysis Form</strong>Sections A–E with gap scoring and risk rating.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Treaty Placement Checklist</strong>Pre-bind due diligence, contract review, dual sign-off.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>Monthly Monitoring Form</strong>Sanctions/AML, reporting, KPI table — fillable throughout.</div></div>
-            <div class="ri-feat"><div class="ri-ic">✓</div><div class="ri-tx"><strong>4 LOB-Specific Forms</strong>Marine, Aviation, Trade Credit, L&H — each with risk ratings.</div></div>
+        <div class="ribody">
+          <div class="rifeats">
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Policy Gap Analysis Form</strong>Sections A–E with gap scoring and risk rating.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Treaty Placement Checklist</strong>Pre-bind due diligence, contract review, dual sign-off.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>Monthly Monitoring Form</strong>Sanctions/AML, reporting, KPI table — fillable throughout.</div></div>
+            <div class="rifeat"><div class="riic">✓</div><div class="ritx"><strong>4 LOB-Specific Forms</strong>Marine, Aviation, Trade Credit, L&amp;H — each with risk ratings.</div></div>
           </div>
-          <div class="ri-tags">
-            <span class="ri-tg lo">8 Forms</span>
-            <span class="ri-tg lo">Fillable PDF</span>
-            <span class="ri-tg lo">Print-Ready</span>
-          </div>
-          <div class="ri-foot">
-            <button class="btn-buy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/cuqkr','_blank')">Buy Now — $29 →</button>
-            <button class="btn-ghost" onclick="smoothScroll('#contact')">Enquire</button>
+          <div class="ritags"><span class="ritag lo">8 Forms</span><span class="ritag lo">Fillable PDF</span><span class="ritag lo">Print-Ready</span></div>
+          <div class="rifoot">
+            <button class="bbuy gold" onclick="window.open('https://mlfincrimelab.gumroad.com/l/cuqkr','_blank')">Buy Now — $29 →</button>
+            <button class="bghost" onclick="ss('#contact')">Enquire</button>
           </div>
         </div>
       </div>
-
     </div>
-
-    <!-- BUNDLE — /l/gezzhz -->
-    <div class="ri-bundle fade-in">
+    <!-- Bundle — /l/gezzhz -->
+    <div class="ribundle fi">
       <div>
-        <div class="sec-label" style="margin-bottom:8px;color:var(--gold)">Complete Bundle — Best Value</div>
+        <div class="slabel" style="margin-bottom:8px;color:var(--gold)">Complete Bundle — Best Value</div>
         <h3>All 4 Products. <em>One Download.</em></h3>
-        <p>2 eBooks + 9-sheet live Excel workbook + 8 fillable PDF checklists. Everything a reinsurance compliance officer needs. Pairs directly with CRR Pro and Sanctions Pro.</p>
+        <p>2 eBooks + 9-sheet live Excel workbook + 8 fillable PDF checklists. Everything a reinsurance compliance officer needs. Pairs with CRR Pro and Sanctions Pro.</p>
       </div>
-      <div class="ri-bright">
-        <div class="ri-bwas">Individual total: $136</div>
-        <div class="ri-bprice">$99</div>
-        <div class="ri-bsave">SAVE $37 — 27% OFF</div>
-        <button class="btn-primary" style="margin-top:8px" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gezzhz','_blank')">Get the Full Bundle →</button>
+      <div class="ribright">
+        <div class="ribwas">Individual total: $136</div>
+        <div class="ribprc">$99</div>
+        <div class="ribsave">SAVE $37 — 27% OFF</div>
+        <button class="btn-g" onclick="window.open('https://mlfincrimelab.gumroad.com/l/gezzhz','_blank')">Get the Full Bundle →</button>
       </div>
     </div>
-
     <!-- LOB Risk -->
-    <div style="margin-top:60px">
-      <div class="sec-label" style="color:var(--gold)">Compliance Risk by Line of Business</div>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:4px">Our tools cover all major P&C and L&H lines.</h3>
-      <div class="lob-grid">
-        <div class="lob-card"><span class="lob-ic">⚓</span><div class="lob-nm">Marine & Energy</div><span class="lob-rsk vh">🔴 VERY HIGH</span><div class="lob-desc">Vessel IMO screening, AIS dark-vessel monitoring, OFAC 50% Rule, cargo controls, sanctioned port calls.</div></div>
-        <div class="lob-card"><span class="lob-ic">✈️</span><div class="lob-nm">Aviation</div><span class="lob-rsk hi">🟠 HIGH</span><div class="lob-desc">MSN register, airline & lessor sanctions, war risk zones, Cape Town Convention, EAR/ITAR export controls.</div></div>
-        <div class="lob-card"><span class="lob-ic">💳</span><div class="lob-nm">Trade Credit & PR</div><span class="lob-rsk hi">🟠 HIGH</span><div class="lob-desc">Country risk frameworks, buyer/sovereign obligor screening, export controls, political risk claims.</div></div>
-        <div class="lob-card"><span class="lob-ic">🏥</span><div class="lob-nm">Life & Health</div><span class="lob-rsk mh">🟣 MEDIUM-HIGH</span><div class="lob-desc">PDPA data processing, medical data governance, IFRS 17 compliance, actuarial data standards.</div></div>
-        <div class="lob-card"><span class="lob-ic">🏢</span><div class="lob-nm">P&C — Property</div><span class="lob-rsk md">🟢 MEDIUM</span><div class="lob-desc">Catastrophe accumulation monitoring, MAS Notice 133 (RBC2) capital adequacy, treaty term compliance.</div></div>
-        <div class="lob-card"><span class="lob-ic">🚗</span><div class="lob-nm">P&C — Casualty</div><span class="lob-rsk md">🟢 LOW-MEDIUM</span><div class="lob-desc">Standard casualty and motor reinsurance compliance. Treaty terms, bordereaux, claims notification.</div></div>
+    <div style="margin-top:56px">
+      <div class="slabel" style="color:var(--gold)">Compliance Risk by Line of Business</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:4px">Our tools cover all major P&amp;C and L&amp;H lines.</h3>
+      <div class="lob">
+        <div class="lbc"><span class="lbic">⚓</span><div class="lbnm">Marine &amp; Energy</div><span class="lbrsk vh">🔴 VERY HIGH</span><div class="lbdesc">Vessel IMO screening, AIS monitoring, OFAC 50% Rule, cargo controls, sanctioned port calls.</div></div>
+        <div class="lbc"><span class="lbic">✈️</span><div class="lbnm">Aviation</div><span class="lbrsk hi">🟠 HIGH</span><div class="lbdesc">MSN register, airline &amp; lessor screening, war risk zones, Cape Town Convention, EAR/ITAR.</div></div>
+        <div class="lbc"><span class="lbic">💳</span><div class="lbnm">Trade Credit &amp; PR</div><span class="lbrsk hi">🟠 HIGH</span><div class="lbdesc">Country risk frameworks, buyer/sovereign obligor screening, export controls.</div></div>
+        <div class="lbc"><span class="lbic">🏥</span><div class="lbnm">Life &amp; Health</div><span class="lbrsk mh">🟣 MEDIUM-HIGH</span><div class="lbdesc">PDPA data processing, medical data governance, IFRS 17 compliance.</div></div>
+        <div class="lbc"><span class="lbic">🏢</span><div class="lbnm">P&amp;C — Property</div><span class="lbrsk md">🟢 MEDIUM</span><div class="lbdesc">Catastrophe accumulation monitoring, MAS Notice 133 (RBC2) capital adequacy.</div></div>
+        <div class="lbc"><span class="lbic">🚗</span><div class="lbnm">P&amp;C — Casualty</div><span class="lbrsk md">🟢 LOW-MEDIUM</span><div class="lbdesc">Standard casualty and motor reinsurance. Treaty terms, bordereaux, claims notification.</div></div>
       </div>
     </div>
-
-    <!-- Recommended Books -->
-    <div style="margin-top:60px">
-      <div class="sec-label" style="color:var(--gold)">Recommended Reading</div>
+    <!-- Books -->
+    <div style="margin-top:56px">
+      <div class="slabel" style="color:var(--gold)">Recommended Reading</div>
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:4px">Essential Books for Reinsurance Compliance Professionals</h3>
-            <div class="books-grid">
-        <div class="book">
-          <span class="book-cat">Marine Insurance</span>
-          <div class="book-ttl">Marine Insurance: Law and Practice</div>
-          <div class="book-auth">F.D. Rose</div>
-          <div class="book-desc">The standard reference on marine insurance law covering hull, cargo, and liability — essential for marine reinsurance compliance.</div>
-          <div class="book-ft">
-            <span class="book-pr">~$120</span>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <a href="https://amzn.to/4tPyZ4e" class="amz-btn" target="_blank" rel="noopener">🛒 Hardcopy</a>
-            <a href="https://amzn.to/42KMnud" class="amz-btn" style="background:#232f3e;color:#FF9900;" target="_blank" rel="noopener">📱 Kindle</a>
-            </div>
-          </div>
-        </div>
-        <div class="book">
-          <span class="book-cat">Reinsurance</span>
-          <div class="book-ttl">Reinsurance: Fundamentals and New Challenges</div>
-          <div class="book-auth">Ruth Gastel</div>
-          <div class="book-desc">Comprehensive overview of reinsurance markets, products, and risk transfer mechanisms — strong foundation for compliance officers new to the sector.</div>
-          <div class="book-ft">
-            <span class="book-pr">~$35</span>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <a href="https://amzn.to/4tKocrJ" class="amz-btn" target="_blank" rel="noopener">🛒 Hardcopy</a>
-            </div>
-          </div>
-        </div>
-        <div class="book">
-          <span class="book-cat">AML / CFT</span>
-          <div class="book-ttl">The AML Compliance Book: 150 Golden Rules</div>
-          <div class="book-auth">Matis Mäeker & Andre Nõmm</div>
-          <div class="book-desc">150 practical golden rules for AML compliance practitioners. Covers organizational, investigative, and risk-based approaches — directly applicable to reinsurance AML programmes.</div>
-          <div class="book-ft">
-            <span class="book-pr">~$45</span>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <a href="https://amzn.to/4cXtPvs" class="amz-btn" target="_blank" rel="noopener">🛒 Hardcopy</a>
-            </div>
-          </div>
-        </div>
-        <div class="book">
-          <span class="book-cat">AML / CFT</span>
-          <div class="book-ttl">Mastering Anti-Money Laundering and Counter-Terrorist Financing</div>
-          <div class="book-auth">Tim Parkman</div>
-          <div class="book-desc">Step-by-step compliance framework guide — from policy design to training and monitoring. Includes checklists, sample documents, and case studies.</div>
-          <div class="book-ft">
-            <span class="book-pr">~$55</span>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <a href="https://amzn.to/4uma47V" class="amz-btn" target="_blank" rel="noopener">🛒 Hardcopy</a>
-            </div>
-          </div>
-        </div>
-        <div class="book">
-          <span class="book-cat">Insurance Risk</span>
-          <div class="book-ttl">Insurance Risk Management and Reinsurance</div>
-          <div class="book-auth">Guillaume Gorge</div>
-          <div class="book-desc">Covers risk valuation and transfer techniques in insurance and reinsurance — including actuarial and corporate finance approaches to catastrophe and life risk management.</div>
-          <div class="book-ft">
-            <span class="book-pr">~$40</span>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <a href="https://amzn.to/4t72NYC" class="amz-btn" target="_blank" rel="noopener">🛒 Hardcopy</a>
-            </div>
-          </div>
-        </div>
-        <div class="book">
-          <span class="book-cat">Life & Health</span>
-          <div class="book-ttl">Life and Health Insurance</div>
-          <div class="book-auth">Kenneth Black Jr. & Harold Skipper</div>
-          <div class="book-desc">The classic text on life and health insurance principles — the product knowledge foundation every L&H reinsurance compliance officer needs.</div>
-          <div class="book-ft">
-            <span class="book-pr">~$85</span>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <a href="https://amzn.to/42clsHE" class="amz-btn" target="_blank" rel="noopener">🛒 Hardcopy</a>
-            </div>
-          </div>
-        </div>
+      <div class="bgrid">
+        <div class="bk"><span class="bkcat">Marine Insurance</span><div class="bkttl">Marine Insurance: Law and Practice</div><div class="bkauth">F.D. Rose</div><div class="bkdesc">The standard reference on marine insurance law. Essential for marine reinsurance compliance.</div><div class="bkft"><span class="bkpr">~$120</span><div style="display:flex;gap:5px"><a href="https://amzn.to/4tPyZ4e" class="abtn" target="_blank" rel="noopener">🛒 Hardcopy</a><a href="https://amzn.to/42KMnud" class="abtn" target="_blank" rel="noopener" style="background:#232f3e;color:#FF9900">📱 Kindle</a></div></div></div>
+        <div class="bk"><span class="bkcat">Reinsurance</span><div class="bkttl">Reinsurance: Fundamentals and New Challenges</div><div class="bkauth">Ruth Gastel</div><div class="bkdesc">Comprehensive overview of reinsurance markets and risk transfer. Strong foundation for compliance officers new to the sector.</div><div class="bkft"><span class="bkpr">~$35</span><a href="https://amzn.to/4tKocrJ" class="abtn" target="_blank" rel="noopener">🛒 Hardcopy</a></div></div>
+        <div class="bk"><span class="bkcat">AML / CFT</span><div class="bkttl">The AML Compliance Book: 150 Golden Rules</div><div class="bkauth">Matis Mäeker &amp; Andre Nõmm</div><div class="bkdesc">150 practical golden rules for AML compliance. Directly applicable to reinsurance AML programmes.</div><div class="bkft"><span class="bkpr">~$45</span><a href="https://amzn.to/4cXtPvs" class="abtn" target="_blank" rel="noopener">🛒 Hardcopy</a></div></div>
+        <div class="bk"><span class="bkcat">AML / CFT</span><div class="bkttl">Mastering Anti-Money Laundering and Counter-Terrorist Financing</div><div class="bkauth">Tim Parkman</div><div class="bkdesc">Step-by-step compliance framework guide with checklists, sample documents, and case studies.</div><div class="bkft"><span class="bkpr">~$55</span><a href="https://amzn.to/4uma47V" class="abtn" target="_blank" rel="noopener">🛒 Hardcopy</a></div></div>
+        <div class="bk"><span class="bkcat">Insurance Risk</span><div class="bkttl">Insurance Risk Management and Reinsurance</div><div class="bkauth">Guillaume Gorge</div><div class="bkdesc">Risk valuation and transfer techniques in insurance and reinsurance. Actuarial and corporate finance approaches.</div><div class="bkft"><span class="bkpr">~$40</span><a href="https://amzn.to/4t72NYC" class="abtn" target="_blank" rel="noopener">🛒 Hardcopy</a></div></div>
+        <div class="bk"><span class="bkcat">Life &amp; Health</span><div class="bkttl">Life and Health Insurance</div><div class="bkauth">Kenneth Black Jr. &amp; Harold Skipper</div><div class="bkdesc">The classic text on life and health insurance principles. Foundation for L&amp;H reinsurance compliance.</div><div class="bkft"><span class="bkpr">~$85</span><a href="https://amzn.to/42clsHE" class="abtn" target="_blank" rel="noopener">🛒 Hardcopy</a></div></div>
       </div>
-      <div class="aff-note">ⓘ Amazon Associate disclosure: Links are affiliate links. We earn a small commission on qualifying purchases at no extra cost to you. We only recommend books we consider genuinely valuable for reinsurance compliance professionals.</div>
+      <div class="affnote">ⓘ Amazon Associate disclosure: Links are affiliate links (tag: moneylensbj-20). We earn a small commission on qualifying purchases at no extra cost to you.</div>
     </div>
   </div>
 </section>
 
-<!-- PROFESSIONAL SERVICES -->
+<!-- SERVICES -->
 <section style="background:var(--off)" id="services">
-  <div class="container">
-    <div class="sec-label">Professional Services</div>
-    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);max-width:520px">Beyond the Tools.<br><em>Expert Compliance Support.</em></h2>
-    <div class="divider"></div>
-    <div class="svc-grid">
-      <div class="svc fade-in"><span class="svc-tag">Service 01</span><h3>Tool Customisation</h3><p>Tailor any tool to your institution's risk appetite, internal policy thresholds, or brand. We customise to your requirements.</p><div class="svc-pr">From $500 <small>USD per tool</small></div></div>
-      <div class="svc fade-in"><span class="svc-tag">Service 02</span><h3>AML Programme Gap Analysis</h3><p>Structured review of your AML/CFT programme against FATF standards — identifying gaps and priority remediation actions.</p><div class="svc-pr">From $1,500 <small>USD</small></div></div>
-      <div class="svc fade-in"><span class="svc-tag">Service 03</span><h3>Policy & Procedure Drafting</h3><p>AML/CFT and reinsurance compliance policies drafted or updated to reflect current regulatory requirements — board-ready.</p><div class="svc-pr">From $2,000 <small>USD</small></div></div>
-      <div class="svc fade-in"><span class="svc-tag">Service 04</span><h3>Compliance Training</h3><p>Practical AML/CFT and reinsurance compliance training for teams — fundamentals, jurisdiction-specific, and case-based workshops.</p><div class="svc-pr">From $500 <small>USD per session</small></div></div>
-      <div class="svc fade-in"><span class="svc-tag">Service 05</span><h3>Regulatory Readiness Review</h3><p>Pre-examination preparation — structured review to identify vulnerabilities before your regulator does. Mock examination included.</p><div class="svc-pr">From $3,000 <small>USD</small></div></div>
-      <div class="svc fade-in"><span class="svc-tag">Service 06</span><h3>Fractional MLRO Advisory</h3><p>Ongoing senior compliance expertise for fintechs and smaller regulated entities without a full-time MLRO. Monthly retainer.</p><div class="svc-pr">From $1,000 <small>USD/month</small></div></div>
+  <div class="ctr">
+    <div class="slabel">Professional Services</div>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.7rem);max-width:500px">Beyond the Tools.<br><em>Expert Compliance Support.</em></h2>
+    <div class="divd"></div>
+    <div class="svcg">
+      <div class="svc fi"><span class="svctag">Service 01</span><h3>Tool Customisation</h3><p>Tailor any tool to your institution's risk appetite, internal policy thresholds, or brand.</p><div class="svcpr">From $500 <small>USD per tool</small></div></div>
+      <div class="svc fi"><span class="svctag">Service 02</span><h3>AML Programme Gap Analysis</h3><p>Structured review of your AML/CFT programme against FATF standards — identifying gaps and priority remediation actions.</p><div class="svcpr">From $1,500 <small>USD</small></div></div>
+      <div class="svc fi"><span class="svctag">Service 03</span><h3>Policy &amp; Procedure Drafting</h3><p>AML/CFT and reinsurance compliance policies drafted or updated to reflect current regulatory requirements.</p><div class="svcpr">From $2,000 <small>USD</small></div></div>
+      <div class="svc fi"><span class="svctag">Service 04</span><h3>Compliance Training</h3><p>Practical AML/CFT and reinsurance compliance training for teams — fundamentals, jurisdiction-specific, and case-based.</p><div class="svcpr">From $500 <small>USD per session</small></div></div>
+      <div class="svc fi"><span class="svctag">Service 05</span><h3>Regulatory Readiness Review</h3><p>Pre-examination preparation — structured review to identify vulnerabilities before your regulator does.</p><div class="svcpr">From $3,000 <small>USD</small></div></div>
+      <div class="svc fi"><span class="svctag">Service 06</span><h3>Fractional MLRO Advisory</h3><p>Ongoing senior compliance expertise for fintechs and smaller regulated entities. Monthly retainer.</p><div class="svcpr">From $1,000 <small>USD/month</small></div></div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section style="background:var(--white)" id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-card fade-in">
-        <div class="about-av">S</div>
-        <div class="about-nm">Co-Founder & Head of Compliance Methodology</div>
-        <div class="about-role">AML/CFT & Reinsurance Compliance Practitioner</div>
-        <div class="about-bio">With hands-on experience in AML/CFT and reinsurance compliance across Singapore and the Asia Pacific region, I built these tools because I lived the problem — inconsistent assessments, spreadsheets that don't survive examination, and enterprise software that teams at small and mid-size institutions simply cannot afford.</div>
-        <div class="cred">AML/CFT practitioner with banking and reinsurance sector experience</div>
-        <div class="cred">Hands-on CDD, EDD, SAR/STR, and reinsurance compliance experience</div>
-        <div class="cred">Familiar with MAS, FCA, FATF frameworks and APAC regulatory landscape</div>
-        <div class="cred">Practitioner-built tools for real compliance problems</div>
+  <div class="ctr">
+    <div class="aboutg">
+      <div class="aboutc fi">
+        <div class="av">S</div>
+        <div class="anm">Co-Founder &amp; Head of Compliance Methodology</div>
+        <div class="arole">AML/CFT &amp; Reinsurance Compliance Practitioner</div>
+        <div class="abio">With hands-on experience in AML/CFT and reinsurance compliance across Singapore and Asia Pacific, I built these tools because I lived the problem — inconsistent assessments, spreadsheets that don't survive examination, and enterprise software that teams at small institutions simply cannot afford.</div>
+        <div class="acred">AML/CFT practitioner with banking and reinsurance sector experience</div>
+        <div class="acred">Hands-on CDD, EDD, SAR/STR, and reinsurance compliance experience</div>
+        <div class="acred">Familiar with MAS, FCA, FATF frameworks and APAC regulatory landscape</div>
+        <div class="acred">Practitioner-built tools for real compliance problems</div>
       </div>
-      <div class="fade-in">
-        <div class="sec-label">Our Story</div>
-        <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:18px">Why We Built<br><em>These Tools</em></h2>
-        <p style="font-size:13px;margin-bottom:14px">Compliance teams at small and mid-size financial institutions face a dilemma: they have the same regulatory obligations as the largest banks and reinsurers, but a fraction of the budget for enterprise compliance software.</p>
-        <p style="font-size:13px;margin-bottom:14px">The result is too often a patchwork of spreadsheets and Word templates — none of which produce the consistent, structured, examiner-ready outputs that regulators expect.</p>
-        <p style="font-size:13px;margin-bottom:24px">We built ML FinCrime Automation Lab to close that gap. AML/CFT tools that any compliance analyst can use on day one, and reinsurance compliance resources that turn policy documents into working programmes.</p>
-        <div class="values">
-          <div class="value"><div class="val-lbl">Our Principle</div><div class="val-txt">Compliance Made Easy. Consistency Made Automatic.</div></div>
-          <div class="value"><div class="val-lbl">Our Commitment</div><div class="val-txt">2025-current legislation. Practitioner-built. Examiner-ready.</div></div>
-          <div class="value"><div class="val-lbl">Privacy Promise</div><div class="val-txt">100% local processing. No customer data ever transmitted.</div></div>
-          <div class="value"><div class="val-lbl">Our Scope</div><div class="val-txt">AML/CFT, Sanctions, and Reinsurance Compliance.</div></div>
+      <div class="fi">
+        <div class="slabel">Our Story</div>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:16px">Why We Built<br><em>These Tools</em></h2>
+        <p style="font-size:13px;margin-bottom:12px">Compliance teams at small and mid-size financial institutions face a dilemma: they have the same regulatory obligations as the largest banks and reinsurers, but a fraction of the budget for enterprise compliance software.</p>
+        <p style="font-size:13px;margin-bottom:12px">The result is too often a patchwork of spreadsheets and Word templates — none of which produce the consistent, structured, examiner-ready outputs that regulators expect.</p>
+        <p style="font-size:13px;margin-bottom:22px">We built ML FinCrime Automation Lab to close that gap. AML/CFT tools any compliance analyst can use on day one, and reinsurance resources that turn policy documents into working programmes.</p>
+        <div class="vals">
+          <div class="val"><div class="vlbl">Our Principle</div><div class="vtxt">Compliance Made Easy. Consistency Made Automatic.</div></div>
+          <div class="val"><div class="vlbl">Our Commitment</div><div class="vtxt">2025-current legislation. Practitioner-built. Examiner-ready.</div></div>
+          <div class="val"><div class="vlbl">Privacy Promise</div><div class="vtxt">100% local processing. No customer data ever transmitted.</div></div>
+          <div class="val"><div class="vlbl">Our Scope</div><div class="vtxt">AML/CFT, Sanctions, and Reinsurance Compliance.</div></div>
         </div>
       </div>
     </div>
@@ -865,16 +703,13 @@ footer{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1)}
 </section>
 
 <!-- CTA STRIP -->
-<div class="cta-strip">
-  <div class="container">
-    <div class="cta-inner">
-      <div>
-        <h3>Ready to build a defensible compliance programme?</h3>
-        <p>AML/CFT tools and reinsurance resources — practitioner-built, examiner-ready.</p>
-      </div>
-      <div class="cta-btns">
-        <button class="btn-primary" onclick="smoothScroll('#tools')">AML/CFT Tools →</button>
-        <button class="btn-outline" onclick="smoothScroll('#reinsurance')">Reinsurance Series →</button>
+<div class="cstrip">
+  <div class="ctr">
+    <div class="cinn">
+      <div><h3>Ready to build a defensible compliance programme?</h3><p>AML/CFT tools and reinsurance resources — practitioner-built, examiner-ready.</p></div>
+      <div class="cbtns">
+        <button class="btn-g" onclick="ss('#tools')">AML/CFT Tools →</button>
+        <button class="btn-o" onclick="ss('#reinsurance')">Reinsurance Series →</button>
       </div>
     </div>
   </div>
@@ -882,52 +717,37 @@ footer{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1)}
 
 <!-- CONTACT -->
 <section style="background:var(--navy2)" id="contact">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-lft">
-        <div class="sec-label" style="color:var(--gold)">Get In Touch</div>
-        <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem)">Let's Talk <em>Compliance.</em></h2>
-        <div class="divider"></div>
+  <div class="ctr">
+    <div class="contg">
+      <div class="contl">
+        <div class="slabel" style="color:var(--gold)">Get In Touch</div>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.7rem)">Let's Talk <em>Compliance.</em></h2>
+        <div class="divd"></div>
         <p>Whether you want to purchase a tool, discuss a custom requirement, or enquire about professional services — we respond within one business day.</p>
-        <div class="channels">
-          <div class="ch"><div class="ch-ic">✉</div><div><div class="ch-lbl">Email</div><div class="ch-val">mlfincrimelab@gmail.com</div></div></div>
-          <div class="ch"><div class="ch-ic">💼</div><div><div class="ch-lbl">LinkedIn</div><div class="ch-val">ML FinCrime Automation Lab</div></div></div>
-          <div class="ch"><div class="ch-ic">⏱</div><div><div class="ch-lbl">Response Time</div><div class="ch-val">Within 1 business day</div></div></div>
-          <div class="ch"><div class="ch-ic">🌍</div><div><div class="ch-lbl">We Serve</div><div class="ch-val">US · UK · EU · Singapore · UAE · India · HK</div></div></div>
+        <div class="chans">
+          <div class="chan"><div class="chic">✉</div><div><div class="chlbl">Email</div><div class="chval">mlfincrimelab@gmail.com</div></div></div>
+          <div class="chan"><div class="chic">💼</div><div><div class="chlbl">LinkedIn</div><div class="chval">ML FinCrime Automation Lab</div></div></div>
+          <div class="chan"><div class="chic">⏱</div><div><div class="chlbl">Response Time</div><div class="chval">Within 1 business day</div></div></div>
+          <div class="chan"><div class="chic">🌍</div><div><div class="chlbl">We Serve</div><div class="chval">US · UK · EU · Singapore · UAE · India · HK</div></div></div>
         </div>
       </div>
       <div class="cf">
-        <div class="cf-title">Send us a message</div>
-        <div class="form-row">
+        <div class="cftl">Send us a message</div>
+        <div class="frow">
           <div class="ff"><label>First Name</label><input type="text" placeholder="First name"/></div>
           <div class="ff"><label>Last Name</label><input type="text" placeholder="Last name"/></div>
         </div>
         <div class="ff"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
         <div class="ff"><label>Institution</label><input type="text" placeholder="Your organisation"/></div>
         <div class="ff"><label>Jurisdiction</label>
-          <select>
-            <option value="">— Select —</option>
-            <option>United States</option><option>United Kingdom</option>
-            <option>European Union</option><option>Singapore</option>
-            <option>UAE</option><option>India</option>
-            <option>Hong Kong</option><option>Labuan</option><option>Other</option>
-          </select>
+          <select><option value="">— Select —</option><option>United States</option><option>United Kingdom</option><option>European Union</option><option>Singapore</option><option>UAE</option><option>India</option><option>Hong Kong</option><option>Labuan</option><option>Other</option></select>
         </div>
         <div class="ff"><label>Enquiry Type</label>
-          <select>
-            <option value="">— Select —</option>
-            <option>AML/CFT Tool — Purchase / Licence Key</option>
-            <option>AML/CFT Tool — Demo Request</option>
-            <option>Reinsurance Series — Purchase / Enquiry</option>
-            <option>Custom Tool Development</option>
-            <option>Professional Services</option>
-            <option>General Compliance Question</option>
-            <option>Partnership / Reseller</option>
-          </select>
+          <select><option value="">— Select —</option><option>AML/CFT Tool — Purchase / Licence Key</option><option>AML/CFT Tool — Demo Request</option><option>Reinsurance Series — Purchase / Enquiry</option><option>Custom Tool Development</option><option>Professional Services</option><option>General Compliance Question</option><option>Partnership / Reseller</option></select>
         </div>
         <div class="ff"><label>Message</label><textarea placeholder="Tell us about your requirement, institution type, and jurisdiction…"></textarea></div>
-        <button class="btn-submit" onclick="handleSubmit(this)">Send Message →</button>
-        <p style="font-size:10px;color:rgba(255,255,255,0.2);margin-top:8px;text-align:center">We respond within one business day.</p>
+        <button class="bsub" onclick="handleSub(this)">Send Message →</button>
+        <p style="font-size:10px;color:rgba(255,255,255,.2);margin-top:8px;text-align:center">We respond within one business day.</p>
       </div>
     </div>
   </div>
@@ -935,36 +755,28 @@ footer{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1)}
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
+  <div class="ctr">
+    <div class="fgrid">
+      <div class="fbrand">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:4px">
-          <svg width="28" height="28" viewBox="0 0 72 72" fill="none">
-            <circle cx="36" cy="36" r="34" fill="#0f2a4a" stroke="rgba(201,151,58,0.3)" stroke-width="1.5"/>
-            <text x="36" y="31" font-family="serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">ML</text>
-            <polyline points="14,52 26,40 34,46 44,34 58,28" stroke="#f4a429" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <polygon points="54,24 62,24 62,32" fill="#f4a429"/>
-          </svg>
-          <div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#fff">ML FinCrime Automation Lab</div>
-            <div style="font-size:9px;color:var(--gold2);font-style:italic">Compliance Made Easy. Consistency Made Automatic.</div>
-          </div>
+          <svg width="28" height="28" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="#0f2a4a" stroke="rgba(201,151,58,.3)" stroke-width="1.5"/><text x="36" y="31" font-family="serif" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">ML</text><polyline points="14,52 26,40 34,46 44,34 58,28" stroke="#f4a429" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><polygon points="54,24 62,24 62,32" fill="#f4a429"/></svg>
+          <div><div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#fff">ML FinCrime Automation Lab</div><div style="font-size:9px;color:var(--gold2);font-style:italic">Compliance Made Easy. Consistency Made Automatic.</div></div>
         </div>
-        <p>Professional AML/CFT and reinsurance compliance tools. FATF-aligned, jurisdiction-specific, practitioner-built.</p>
-        <p style="margin-top:4px;font-size:10px;color:rgba(255,255,255,0.2)">Educational purposes only. Not legal advice.</p>
+        <p>Professional AML/CFT and reinsurance compliance tools. FATF-aligned, practitioner-built.</p>
+        <p style="margin-top:4px;font-size:10px;color:rgba(255,255,255,.2)">Educational purposes only. Not legal advice.</p>
       </div>
-      <div class="footer-col">
+      <div class="fcol">
         <h5>AML/CFT Tools</h5>
         <ul>
           <li><span onclick="window.open('https://mlfincrimelab.gumroad.com/l/gqgxzl','_blank')">CRR Pro v8 — $179</span></li>
           <li><span onclick="window.open('https://mlfincrimelab.gumroad.com/l/vihkfi','_blank')">EDD Pro v1 — $199</span></li>
           <li><span onclick="window.open('https://mlfincrimelab.gumroad.com/l/uxerf','_blank')">SAR/STR Pro v1 — $199</span></li>
           <li><span onclick="window.open('https://mlfincrimelab.gumroad.com/l/jktfy','_blank')">Sanctions Pro v1 — $199</span></li>
-          <li><span onclick="smoothScroll('#contact')">Full Suite — $549</span></li>
+          <li><span onclick="ss('#contact')">Full Suite — $549</span></li>
           <li><span onclick="window.open('https://mlfincrimelab.gumroad.com/l/fgmxkn','_blank')">Free Methodology Guide</span></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="fcol">
         <h5>Reinsurance Series</h5>
         <ul>
           <li><span onclick="window.open('https://mlfincrimelab.gumroad.com/l/ijisw','_blank')">From Policy to Practice — $29</span></li>
@@ -974,20 +786,21 @@ footer{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1)}
           <li><span onclick="window.open('https://mlfincrimelab.gumroad.com/l/gezzhz','_blank')">Full Bundle — $99</span></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="fcol">
         <h5>Company</h5>
         <ul>
-          <li><span onclick="smoothScroll('#about')">About Us</span></li>
-          <li><span onclick="smoothScroll('#services')">Services</span></li>
-          <li><span onclick="smoothScroll('#jurisdictions')">Coverage</span></li>
-          <li><span onclick="smoothScroll('#contact')">Contact</span></li>
+          <li><span onclick="ss('#about')">About Us</span></li>
+          <li><span onclick="ss('#services')">Services</span></li>
+          <li><span onclick="ss('#jurisdictions')">Coverage</span></li>
+          <li><a href="blog.html">Insights / Blog</a></li>
+          <li><span onclick="ss('#contact')">Contact</span></li>
           <li><a href="mailto:mlfincrimelab@gmail.com">Support</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="fbot">
       <p>© 2025 ML FinCrime Automation Lab. All Rights Reserved. Single-user licences only.</p>
-      <div class="footer-links-row">
+      <div class="flinks">
         <a href="mailto:mlfincrimelab@gmail.com">Support</a>
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
@@ -997,54 +810,36 @@ footer{background:var(--navy);border-top:1px solid rgba(201,151,58,0.1)}
 </footer>
 
 <script>
-function toggleNav(){document.getElementById('navLinks').classList.toggle('open')}
-function closeNav(){document.getElementById('navLinks').classList.remove('open')}
-function smoothScroll(id){
-  const el=document.querySelector(id);
+// Single clean JS block — no duplicate variables
+function tn(){
+  var n=document.getElementById('nl');
+  var b=document.getElementById('hbg');
+  n.classList.toggle('open');
+  b.classList.toggle('open');
+}
+function cn(){
+  document.getElementById('nl').classList.remove('open');
+  document.getElementById('hbg').classList.remove('open');
+}
+function ss(id){
+  var el=document.querySelector(id);
   if(el){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-66,behavior:'smooth'});}
-  closeNav();
+  cn();
 }
-document.addEventListener('click',e=>{
-  const nav=document.getElementById('navLinks');
-  const btn=document.querySelector('.hamburger');
-  if(nav.classList.contains('open')&&!nav.contains(e.target)&&!btn.contains(e.target))closeNav();
+document.addEventListener('click',function(e){
+  var n=document.getElementById('nl');
+  var b=document.getElementById('hbg');
+  if(n.classList.contains('open')&&!n.contains(e.target)&&b&&!b.contains(e.target)){cn();}
 });
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
-},{threshold:.08});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-function handleSubmit(btn){
-  btn.textContent='Sending…';btn.disabled=true;
-  setTimeout(()=>{
-    btn.textContent='Message Sent ✓';btn.style.background='#059669';
-    setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';btn.disabled=false;},3000);
-  },800);
-}
-</script>
-
-
-<script>
-function toggleNav(){document.getElementById('navLinks').classList.toggle('open')}
-function closeNav(){document.getElementById('navLinks').classList.remove('open')}
-function smoothScroll(id){
-  const el=document.querySelector(id);
-  if(el){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-66,behavior:'smooth'});}
-  closeNav();
-}
-document.addEventListener('click',e=>{
-  const nav=document.getElementById('navLinks');
-  const btn=document.querySelector('.hamburger');
-  if(nav.classList.contains('open')&&!nav.contains(e.target)&&!btn.contains(e.target))closeNav();
-});
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
-},{threshold:.08});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-function handleSubmit(btn){
-  btn.textContent='Sending…';btn.disabled=true;
-  setTimeout(()=>{
-    btn.textContent='Message Sent ✓';btn.style.background='#059669';
-    setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';btn.disabled=false;},3000);
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:0.08});
+document.querySelectorAll('.fi').forEach(function(el){obs.observe(el);});
+function handleSub(btn){
+  btn.textContent='Sending\u2026';btn.disabled=true;
+  setTimeout(function(){
+    btn.textContent='Message Sent \u2713';btn.style.background='#059669';
+    setTimeout(function(){btn.textContent='Send Message \u2192';btn.style.background='';btn.disabled=false;},3000);
   },800);
 }
 </script>
